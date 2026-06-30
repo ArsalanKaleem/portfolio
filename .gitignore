@@ -1,0 +1,43 @@
+# ─── Operating system ───────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ─── Editors / IDEs ─────────────────────────────────
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# ─── Logs ───────────────────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ─── Dependencies (only if you add tooling later) ───
+node_modules/
+package-lock.json
+yarn.lock
+
+# ─── Environment / secrets ──────────────────────────
+.env
+.env.local
+*.local
+
+# ─── Build output (only if you add a bundler later) ─
+dist/
+build/
+.cache/
+
+# ─── Misc ───────────────────────────────────────────
+*.tmp
+*.bak
