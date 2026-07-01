@@ -279,22 +279,23 @@ html.light .about-portrait::after{background:linear-gradient(to top,rgba(0,0,0,.
 .phone-float{position:relative;animation:phfloat 7s ease-in-out infinite;filter:drop-shadow(0 30px 42px rgba(0,0,0,.5));will-change:transform}
 .phone{
   position:relative;width:clamp(205px,21vw,255px);aspect-ratio:9/19.5;
-  border-radius:clamp(30px,3vw,44px);padding:3px;
+  border-radius:clamp(6px,.8vw,11px);padding:3px;
   background:linear-gradient(155deg,#63636b 0%,#2a2a2e 26%,#404046 52%,#1c1c20 80%,#4b4b53 100%);
   box-shadow:inset 0 1px 1px rgba(255,255,255,.16),inset 0 -1px 2px rgba(0,0,0,.55);
   will-change:transform;
 }
 .phone::before{content:'';position:absolute;left:-2px;top:21%;width:2px;height:17%;border-radius:2px 0 0 2px;background:linear-gradient(#55555c,#26262a)}
 .phone::after{content:'';position:absolute;right:-2px;top:27%;width:2px;height:11%;border-radius:0 2px 2px 0;background:linear-gradient(#55555c,#26262a)}
-.ph-body{height:100%;background:#060607;border-radius:calc(clamp(30px,3vw,44px) - 3px);padding:clamp(6px,.7vw,9px)}
+.ph-body{height:100%;background:#060607;border-radius:calc(clamp(6px,.8vw,11px) - 3px);padding:clamp(5px,.6vw,8px)}
 .ph-screen{position:relative;height:100%;overflow:hidden;transform:translateZ(0);
-  border-radius:calc(clamp(30px,3vw,44px) - clamp(8px,.9vw,11px));
+  border-radius:clamp(3px,.4vw,6px);
   background:linear-gradient(165deg,#141416,#0a0a0b 55%,#17171a)}
 .ph-screen.ph-empty{background:
   radial-gradient(120% 90% at 20% 10%,rgba(236,232,225,.08),transparent 55%),
   radial-gradient(100% 80% at 85% 90%,rgba(236,232,225,.05),transparent 60%),
   linear-gradient(165deg,#17171a,#0a0a0b)}
-.ph-island{position:absolute;top:2.4%;left:50%;transform:translateX(-50%);width:28%;height:3.7%;background:#050506;border-radius:40px;z-index:3;box-shadow:0 0 0 1px rgba(255,255,255,.04),inset 0 1px 2px rgba(0,0,0,.85)}
+.ph-cam{position:absolute;top:0;left:50%;transform:translateX(-50%);width:clamp(15px,1.7vw,21px);height:clamp(8px,.95vw,12px);background:#050506;border-radius:0 0 62% 62%/0 0 100% 100%;z-index:3;box-shadow:inset 0 -1px 1px rgba(255,255,255,.04)}
+.ph-cam::after{content:'';position:absolute;left:50%;top:22%;transform:translateX(-50%);width:clamp(3px,.42vw,5px);height:clamp(3px,.42vw,5px);border-radius:50%;background:radial-gradient(circle at 38% 32%,#40404e,#08080b 72%);box-shadow:0 0 0 1px rgba(120,120,140,.22)}
 .ph-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none;user-select:none;backface-visibility:hidden;transition:opacity .7s var(--ease);will-change:opacity,transform}
 .ph-shot.on{opacity:1;animation:shotzoom 3.1s linear forwards}
 @keyframes shotzoom{from{transform:scale(1)}to{transform:scale(1.03)}}
@@ -719,7 +720,7 @@ html.lenis,html.lenis body{height:auto}
           <div class="ph-stage">
             <div class="phone-float">
               <div class="phone" data-shots="careergpt" aria-label="CareerGPT app screenshots">
-                <div class="ph-body"><div class="ph-screen"><div class="ph-island" aria-hidden="true"></div></div></div>
+                <div class="ph-body"><div class="ph-screen"><div class="ph-cam" aria-hidden="true"></div></div></div>
               </div>
               <div class="ph-ground" aria-hidden="true"></div>
             </div>
@@ -747,7 +748,7 @@ html.lenis,html.lenis body{height:auto}
           <div class="ph-stage">
             <div class="phone-float">
               <div class="phone" data-shots="simul" aria-label="Simul app screenshots">
-                <div class="ph-body"><div class="ph-screen"><div class="ph-island" aria-hidden="true"></div></div></div>
+                <div class="ph-body"><div class="ph-screen"><div class="ph-cam" aria-hidden="true"></div></div></div>
               </div>
               <div class="ph-ground" aria-hidden="true"></div>
             </div>
@@ -775,7 +776,7 @@ html.lenis,html.lenis body{height:auto}
           <div class="ph-stage">
             <div class="phone-float">
               <div class="phone" data-shots="civicping" aria-label="CivicPing app screenshots">
-                <div class="ph-body"><div class="ph-screen"><div class="ph-island" aria-hidden="true"></div></div></div>
+                <div class="ph-body"><div class="ph-screen"><div class="ph-cam" aria-hidden="true"></div></div></div>
               </div>
               <div class="ph-ground" aria-hidden="true"></div>
             </div>
