@@ -58,7 +58,8 @@ html.light .contact-glow{background:radial-gradient(circle,rgba(23,20,15,.05),tr
 html.light.cur-hot #cur-ring{background:rgba(23,20,15,.09)}
 html.light #loader .l-glow{background:radial-gradient(circle,rgba(23,20,15,.06),transparent 60%)}
 html.light #grid .g-cols div{background:rgba(23,20,15,.04);border-color:rgba(23,20,15,.07)}
-html.light .phone{box-shadow:0 24px 60px rgba(23,20,15,.16)}
+html.light .phone-float{filter:drop-shadow(0 22px 30px rgba(23,20,15,.30))}
+html.light .ph-ground{background:radial-gradient(ellipse at center,rgba(23,20,15,.32),transparent 68%)}
 /* smooth crossfade only during the switch */
 html.theming,html.theming *{transition:background-color .45s var(--ease),border-color .45s var(--ease),color .45s var(--ease),fill .45s var(--ease)!important}
 
@@ -271,14 +272,40 @@ html.light .about-portrait::after{background:linear-gradient(to top,rgba(0,0,0,.
 .panel::before{content:'';position:absolute;inset:0;opacity:.5;background:radial-gradient(70vw 70vw at 80% 20%,var(--tint,rgba(236,232,225,.05)),transparent 60%);pointer-events:none;transition:opacity .6s}
 .panel-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,4rem);align-items:center;width:100%}
 .panel.flip .panel-visual{order:2}
-.panel-visual{aspect-ratio:4/3;border:1px solid var(--line);border-radius:4px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,var(--ink-3),var(--ink));perspective:1000px}
-.panel-bgmark{position:absolute;font-family:var(--font-display);font-weight:800;font-size:clamp(5rem,16vw,12rem);letter-spacing:-.06em;color:var(--bone);opacity:.05;user-select:none;will-change:transform}
-.phone{width:clamp(120px,17vw,168px);aspect-ratio:9/19;border-radius:22px;background:var(--ink);border:1px solid var(--line-2);overflow:hidden;display:flex;flex-direction:column;padding:.55rem;gap:.35rem;box-shadow:0 30px 80px rgba(0,0,0,.55);will-change:transform}
-.ph-notch{width:34px;height:5px;border-radius:3px;background:var(--line-2);margin:.1rem auto .25rem}
-.ph-bar{height:9px;border-radius:5px;background:var(--ink-3)}
-.ph-bar.lite{background:var(--line-2);width:62%}
-.ph-block{flex:1;border-radius:8px;background:var(--ink-2);min-height:40px}
-.ph-block.b2{flex:0 0 34px}
+.panel-visual{position:relative;display:flex;align-items:center;justify-content:center;min-height:clamp(440px,60vh,600px);perspective:1200px}
+.panel-bgmark{position:absolute;top:50%;left:50%;margin-top:-.55em;transform:translateX(-50%);font-family:var(--font-display);font-weight:800;font-size:clamp(4rem,13vw,10rem);letter-spacing:-.06em;color:var(--bone);opacity:.05;user-select:none;will-change:transform;z-index:0}
+/* ── Realistic iPhone frame + screenshot slideshow ── */
+.ph-stage{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
+.phone-float{position:relative;animation:phfloat 7s ease-in-out infinite;filter:drop-shadow(0 30px 42px rgba(0,0,0,.5));will-change:transform}
+.phone{
+  position:relative;width:clamp(205px,21vw,255px);aspect-ratio:9/19.5;
+  border-radius:clamp(30px,3vw,44px);padding:3px;
+  background:linear-gradient(155deg,#63636b 0%,#2a2a2e 26%,#404046 52%,#1c1c20 80%,#4b4b53 100%);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.16),inset 0 -1px 2px rgba(0,0,0,.55);
+  will-change:transform;
+}
+.phone::before{content:'';position:absolute;left:-2px;top:21%;width:2px;height:17%;border-radius:2px 0 0 2px;background:linear-gradient(#55555c,#26262a)}
+.phone::after{content:'';position:absolute;right:-2px;top:27%;width:2px;height:11%;border-radius:0 2px 2px 0;background:linear-gradient(#55555c,#26262a)}
+.ph-body{height:100%;background:#060607;border-radius:calc(clamp(30px,3vw,44px) - 3px);padding:clamp(6px,.7vw,9px)}
+.ph-screen{position:relative;height:100%;overflow:hidden;transform:translateZ(0);
+  border-radius:calc(clamp(30px,3vw,44px) - clamp(8px,.9vw,11px));
+  background:linear-gradient(165deg,#141416,#0a0a0b 55%,#17171a)}
+.ph-screen.ph-empty{background:
+  radial-gradient(120% 90% at 20% 10%,rgba(236,232,225,.08),transparent 55%),
+  radial-gradient(100% 80% at 85% 90%,rgba(236,232,225,.05),transparent 60%),
+  linear-gradient(165deg,#17171a,#0a0a0b)}
+.ph-island{position:absolute;top:2.4%;left:50%;transform:translateX(-50%);width:28%;height:3.7%;background:#050506;border-radius:40px;z-index:3;box-shadow:0 0 0 1px rgba(255,255,255,.04),inset 0 1px 2px rgba(0,0,0,.85)}
+.ph-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none;user-select:none;backface-visibility:hidden;transition:opacity .7s var(--ease);will-change:opacity,transform}
+.ph-shot.on{opacity:1;animation:shotzoom 3.1s linear forwards}
+@keyframes shotzoom{from{transform:scale(1)}to{transform:scale(1.03)}}
+.ph-screen.paused .ph-shot{animation-play-state:paused}
+@keyframes phfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.ph-ground{width:64%;height:14px;margin:20px auto 0;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.5),transparent 68%);filter:blur(6px);animation:phground 7s ease-in-out infinite}
+@keyframes phground{0%,100%{transform:scaleX(1);opacity:.85}50%{transform:scaleX(.86);opacity:.55}}
+.ph-dots{display:flex;gap:.42rem;justify-content:center;margin-top:1.35rem}
+.ph-dots .pdot{width:6px;height:6px;padding:0;border:none;border-radius:40px;background:var(--line-2);cursor:pointer;transition:width .4s var(--ease),background .3s}
+.ph-dots .pdot:hover{background:var(--ash)}
+.ph-dots .pdot.on{width:20px;background:var(--bone)}
 .panel-num{font-family:var(--font-mono);font-size:.74rem;color:var(--ash);margin-bottom:1rem}
 .panel-title{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,4.5vw,3.4rem);letter-spacing:-.035em;line-height:1;text-transform:uppercase;color:var(--bone);margin-bottom:1.1rem}
 .panel-desc{font-size:1rem;color:var(--ash);line-height:1.7;margin-bottom:1.5rem;max-width:48ch}
@@ -414,6 +441,9 @@ footer{border-top:1px solid var(--line);padding:clamp(3rem,7vw,5rem) 0 0}
   .foot-grid{grid-template-columns:1fr;gap:2.25rem}
   .about-portrait{max-width:none}
   .panel-num{margin-bottom:.6rem}
+  .panel-visual{min-height:auto;padding:1rem 0}
+  .phone{width:clamp(210px,62vw,260px)}
+  .ph-dots{gap:.36rem;margin-top:1.1rem}
 }
 @media(max-width:380px){
   .hero-line span{font-size:14.5vw}
@@ -554,15 +584,12 @@ html.lenis,html.lenis body{height:auto}
     <div class="about-grid">
       <div>
         <h2 class="about-hello" id="about-hello">Building scalable applications with <em>Flutter &amp; AI.</em></h2>
-
         <p class="about-body anim">
           I'm a final-year Computer Science student at <b>Shaikh Ayaz University, Shikarpur</b>, specializing in <b>Flutter development</b> and <b>AI-powered applications</b>. I build cross-platform applications for mobile, Windows desktop, and the web with a focus on clean architecture, performance, and intuitive user experiences.
         </p>
-
         <p class="about-body anim">
           My work includes <b>Firebase</b>, <b>Gemini AI</b>, <b>WebRTC</b>, REST APIs, and real-time systems. I enjoy solving complex engineering problems and building reliable, scalable software that delivers meaningful value to users.
         </p>
-
         <div class="certs">
           <span class="cert anim">Google UX Design</span>
           <span class="cert anim">Meta Front-End</span>
@@ -571,7 +598,6 @@ html.lenis,html.lenis body{height:auto}
           <span class="cert anim">Firebase</span>
         </div>
       </div>
-
       <div>
         <div class="about-portrait" id="portrait">
           <img class="portrait-img portrait-dark" src="https://res.cloudinary.com/dfd2kp7s5/image/upload/v1782695912/image_ao9slm.jpg" alt="Arsalan Kaleem">
@@ -584,7 +610,6 @@ html.lenis,html.lenis body{height:auto}
             <div class="mono" style="text-align:right">Shikarpur,<br>Pakistan</div>
           </div>
         </div>
-
         <div class="timeline">
           <div class="t-row anim">
             <div class="t-year">2025</div>
@@ -622,11 +647,11 @@ html.lenis,html.lenis body{height:auto}
     </div>
   </div>
 </section>
+
 <!-- SERVICES -->
 <section id="skills">
   <div class="shell">
     <div class="sec-head"><span class="tag">Services</span><span class="sec-line"></span><span class="sec-title">What I do</span></div>
-
     <div class="svc-row anim">
       <div class="svc-num">01</div>
       <div class="svc-name">Mobile &amp; Desktop Apps</div>
@@ -653,7 +678,6 @@ html.lenis,html.lenis body{height:auto}
       </div>
     </div>
 
-
     <div class="svc-row anim">
       <div class="svc-num">03</div>
       <div class="svc-name">Web &amp; Tools</div>
@@ -677,7 +701,6 @@ html.lenis,html.lenis body{height:auto}
         <span class="svc-tag">Watch-Party Sync</span>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -693,7 +716,15 @@ html.lenis,html.lenis body{height:auto}
       <div class="shell panel-grid">
         <div class="panel-visual" data-cursor="VIEW">
           <span class="panel-bgmark">CG</span>
-          <div class="phone"><div class="ph-notch"></div><div class="ph-bar lite"></div><div class="ph-block"></div><div class="ph-bar"></div><div class="ph-block b2"></div><div class="ph-bar lite" style="width:80%"></div></div>
+          <div class="ph-stage">
+            <div class="phone-float">
+              <div class="phone" data-shots="careergpt" aria-label="CareerGPT app screenshots">
+                <div class="ph-body"><div class="ph-screen"><div class="ph-island" aria-hidden="true"></div></div></div>
+              </div>
+              <div class="ph-ground" aria-hidden="true"></div>
+            </div>
+            <div class="ph-dots" data-dots="careergpt" aria-label="CareerGPT app screenshots screenshots"></div>
+          </div>
         </div>
         <div class="panel-info">
           <div class="panel-num">01 — AI Application</div>
@@ -713,7 +744,15 @@ html.lenis,html.lenis body{height:auto}
       <div class="shell panel-grid">
         <div class="panel-visual" data-cursor="VIEW">
           <span class="panel-bgmark">S</span>
-          <div class="phone"><div class="ph-notch"></div><div class="ph-block" style="flex:0 0 70px"></div><div class="ph-bar"></div><div class="ph-bar lite"></div><div class="ph-block b2"></div><div class="ph-bar" style="width:55%"></div></div>
+          <div class="ph-stage">
+            <div class="phone-float">
+              <div class="phone" data-shots="simul" aria-label="Simul app screenshots">
+                <div class="ph-body"><div class="ph-screen"><div class="ph-island" aria-hidden="true"></div></div></div>
+              </div>
+              <div class="ph-ground" aria-hidden="true"></div>
+            </div>
+            <div class="ph-dots" data-dots="simul" aria-label="Simul app screenshots screenshots"></div>
+          </div>
         </div>
         <div class="panel-info">
           <div class="panel-num">02 — Real-time App</div>
@@ -733,7 +772,15 @@ html.lenis,html.lenis body{height:auto}
       <div class="shell panel-grid">
         <div class="panel-visual" data-cursor="VIEW">
           <span class="panel-bgmark">CP</span>
-          <div class="phone"><div class="ph-notch"></div><div class="ph-bar" style="width:50%"></div><div class="ph-block"></div><div class="ph-bar lite"></div><div class="ph-bar" style="width:70%"></div><div class="ph-block b2"></div></div>
+          <div class="ph-stage">
+            <div class="phone-float">
+              <div class="phone" data-shots="civicping" aria-label="CivicPing app screenshots">
+                <div class="ph-body"><div class="ph-screen"><div class="ph-island" aria-hidden="true"></div></div></div>
+              </div>
+              <div class="ph-ground" aria-hidden="true"></div>
+            </div>
+            <div class="ph-dots" data-dots="civicping" aria-label="CivicPing app screenshots screenshots"></div>
+          </div>
         </div>
         <div class="panel-info">
           <div class="panel-num">03 — Civic Tech</div>
@@ -1054,9 +1101,8 @@ html.lenis,html.lenis body{height:auto}
         }});
       });
       /* timeline rows */
-     /* timeline rows */
-gsap.fromTo('.t-row',{x:-24,opacity:0},{x:0,opacity:1,duration:.7,ease:'power3.out',stagger:.08,
-  scrollTrigger:{trigger:'.timeline',start:'top 82%'}});
+      gsap.fromTo('.t-row',{x:-24,opacity:0},{x:0,opacity:1,duration:.7,ease:'power3.out',stagger:.08,
+        scrollTrigger:{trigger:'.timeline',start:'top 82%'}});
       /* about body + certs */
       gsap.to('.about-body',{opacity:1,y:0,duration:.8,stagger:.1,ease:'power3.out',scrollTrigger:{trigger:'.about-body',start:'top 86%'}});
       gsap.set('.about-body',{y:16});
@@ -1077,7 +1123,7 @@ gsap.fromTo('.t-row',{x:-24,opacity:0},{x:0,opacity:1,duration:.7,ease:'power3.o
       /* WORK panels: phone tilt + bgmark parallax + ambient + outgoing scale */
       gsap.utils.toArray('.panel').forEach(function(panel,i){
         var phone=panel.querySelector('.phone'), mark=panel.querySelector('.panel-bgmark');
-        gsap.fromTo(phone,{rotateY:-14,rotateX:6,y:30},{rotateY:8,rotateX:-2,y:-30,ease:'none',
+        gsap.fromTo(phone,{rotateY:-14,rotateX:6,y:26},{rotateY:8,rotateX:-3,y:-26,ease:'none',
           scrollTrigger:{trigger:panel,start:'top bottom',end:'bottom top',scrub:.7}});
         gsap.fromTo(mark,{yPercent:18},{yPercent:-18,ease:'none',
           scrollTrigger:{trigger:panel,start:'top bottom',end:'bottom top',scrub:.7}});
@@ -1147,6 +1193,63 @@ gsap.fromTo('.t-row',{x:-24,opacity:0},{x:0,opacity:1,duration:.7,ease:'power3.o
         if(hasGSAP) gsap.from(ok,{opacity:0,scale:.96,y:10,duration:.5,ease:'back.out(1.5)'});
       }
     },1100);
+  });
+
+  /* ============ WORK: PHONE SCREENSHOT SLIDESHOWS ============ */
+  /* ┌──────────────────────────────────────────────────────────────┐
+     │  PASTE YOUR CLOUDINARY SCREENSHOT URLS BELOW (in order).     │
+     │  Uncomment a line and replace it with your URL, like:        │
+     │    'https://res.cloudinary.com/xxx/image/upload/v1/shot1.png', │
+     │  Empty array = phone shows a clean placeholder screen.      │
+     └──────────────────────────────────────────────────────────────┘ */
+  var SHOTS = {
+    careergpt: [
+      // 'PASTE_URL_1',
+      // 'PASTE_URL_2',
+      // 'PASTE_URL_3',
+      // 'PASTE_URL_4',
+      // 'PASTE_URL_5',
+      // 'PASTE_URL_6',
+      // 'PASTE_URL_7',
+      // 'PASTE_URL_8',
+      // 'PASTE_URL_9',
+      // 'PASTE_URL_10',
+    ],
+    simul: [
+    ],
+    civicping: [
+    ]
+  };
+  document.querySelectorAll('.phone[data-shots]').forEach(function(ph){
+    var key=ph.getAttribute('data-shots');
+    var urls=(SHOTS[key]||[]).filter(function(u){return u && typeof u==='string' && u.indexOf('PASTE_URL')===-1;});
+    var screen=ph.querySelector('.ph-screen');
+    var dotsWrap=document.querySelector('.ph-dots[data-dots="'+key+'"]');
+    if(!urls.length){ screen.classList.add('ph-empty'); if(dotsWrap) dotsWrap.style.display='none'; return; }
+    var idx=0, hover=false, imgs=[], dots=[];
+    urls.forEach(function(u,i){
+      var img=document.createElement('img');
+      img.src=u; img.alt=''; img.loading=i?'lazy':'eager'; img.decoding='async'; img.draggable=false;
+      img.className='ph-shot'+(i?'':' on');
+      screen.appendChild(img); imgs.push(img);
+      if(dotsWrap){
+        var d=document.createElement('button'); d.type='button';
+        d.className='pdot'+(i?'':' on'); d.setAttribute('aria-label','Screenshot '+(i+1)+' of '+urls.length);
+        d.addEventListener('click',function(){ show(i); });
+        dotsWrap.appendChild(d); dots.push(d);
+      }
+    });
+    function show(n){
+      if(n===idx && imgs[idx].classList.contains('on')) return;
+      imgs[idx].classList.remove('on'); if(dots[idx]) dots[idx].classList.remove('on');
+      idx=(n+imgs.length)%imgs.length;
+      var im=imgs[idx]; im.classList.remove('on'); void im.offsetWidth; im.classList.add('on');
+      if(dots[idx]) dots[idx].classList.add('on');
+    }
+    if(!REDUCE) setInterval(function(){ if(!hover) show(idx+1); }, 3000);
+    var hoverEl=ph.closest('.panel-visual')||ph;
+    hoverEl.addEventListener('mouseenter',function(){ hover=true; screen.classList.add('paused'); });
+    hoverEl.addEventListener('mouseleave',function(){ hover=false; screen.classList.remove('paused'); });
   });
 
   /* ============ EASTER EGGS ============ */
