@@ -17,6 +17,7 @@
 </p>
 
 <!-- ─── TECH BADGES ─────────────────────────────────────────── -->
+
 <p align="center">
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5">
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3">
@@ -26,6 +27,7 @@
 </p>
 
 <!-- ─── REPO BADGES (need <USERNAME>/<REPO>) ────────────────── -->
+
 <p align="center">
   <img src="https://img.shields.io/github/license/<USERNAME>/<REPO>?style=flat-square" alt="License">
   <img src="https://img.shields.io/github/stars/<USERNAME>/<REPO>?style=flat-square" alt="Stars">
@@ -44,6 +46,7 @@
 </p>
 
 <!-- Add a screenshot here once you have one -->
+
 <p align="center">
   <img src="./assets/preview.png" alt="Portfolio preview" width="100%">
 </p>
@@ -88,14 +91,15 @@ that restraint rather than fight it.
 
 ## 🛠️ Tech Stack
 
-| Layer        | Tools |
-|--------------|-------|
-| Markup       | Semantic **HTML5** (single file) |
-| Styling      | **CSS3** — custom-property design tokens, fluid `clamp()` type, Grid &amp; Flexbox |
-| Behaviour    | **Vanilla JavaScript** (no framework) |
-| Animation    | **GSAP 3.13** · **ScrollTrigger** · **SplitText** |
-| Smooth scroll| **Lenis** |
-| Typography   | Bricolage Grotesque · Inter · JetBrains Mono (Google Fonts) |
+
+| Layer         | Tools                                                                               |
+| ------------- | ----------------------------------------------------------------------------------- |
+| Markup        | Semantic**HTML5** (single file)                                                     |
+| Styling       | **CSS3** — custom-property design tokens, fluid `clamp()` type, Grid &amp; Flexbox |
+| Behaviour     | **Vanilla JavaScript** (no framework)                                               |
+| Animation     | **GSAP 3.13** · **ScrollTrigger** · **SplitText**                                 |
+| Smooth scroll | **Lenis**                                                                           |
+| Typography    | Bricolage Grotesque · Inter · JetBrains Mono (Google Fonts)                       |
 
 > All animation libraries are **inlined** into the HTML, so the published file has **no external
 > JS dependencies**.
@@ -104,13 +108,14 @@ that restraint rather than fight it.
 
 ## 🥚 Easter Eggs
 
-| Trigger | What happens |
-|---------|--------------|
-| Press **`G`** | Toggles a 12-column design-grid overlay |
-| Click the **logo** 5× | Unlocks and cycles a hidden accent colour |
-| Click the pulsing **“available” dot** | A little hello |
-| **`↑ ↑ ↓ ↓ ← → ← → B A`** | The Konami surprise |
-| Click during the **loader** | Skips the intro instantly |
+
+| Trigger                                | What happens                              |
+| -------------------------------------- | ----------------------------------------- |
+| Press**`G`**                           | Toggles a 12-column design-grid overlay   |
+| Click the**logo** 5×                  | Unlocks and cycles a hidden accent colour |
+| Click the pulsing**“available” dot** | A little hello                            |
+| **`↑ ↑ ↓ ↓ ← → ← → B A`**      | The Konami surprise                       |
+| Click during the**loader**             | Skips the intro instantly                 |
 
 ---
 
@@ -169,17 +174,18 @@ Everything you'd want to change lives either in the `<style>` block at the top o
 `<script>` at the very bottom. **Don't touch the four dense minified `<script>` blocks near the end
 — those are the vendored GSAP / Lenis libraries.**
 
-| I want to change… | Where to look |
-|-------------------|---------------|
-| **Colours / theme** | `:root { }` (dark palette) and `html.light { }` (light palette). Edit `--ink` (background) and `--bone` (text). |
-| **Fonts** | The Google Fonts `<link>` in `<head>`, plus `--font-display / --font-body / --font-mono`. |
-| **Name, bio, copy** | Directly in the HTML sections — just type over the text. |
-| **Rotating role text** | The `roles` array in the script. |
-| **Marquee words** | The `.marquee-item` spans (duplicated once for a seamless loop — edit both copies). |
-| **Projects** | The three `<article class="panel">` blocks and the three `.mini` cards. |
-| **Portrait photos** | The two `.portrait-img` `src` URLs (one for dark, one for light). |
-| **Footer watermark size** | `.foot-word { font-size: clamp(4rem, 26vw, 22rem) }` — the middle `vw` is the live value. |
-| **Easter-egg accent colours** | The `accents` array in the script. |
+
+| I want to change…            | Where to look                                                                                                   |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **Colours / theme**           | `:root { }` (dark palette) and `html.light { }` (light palette). Edit `--ink` (background) and `--bone` (text). |
+| **Fonts**                     | The Google Fonts`<link>` in `<head>`, plus `--font-display / --font-body / --font-mono`.                        |
+| **Name, bio, copy**           | Directly in the HTML sections — just type over the text.                                                       |
+| **Rotating role text**        | The`roles` array in the script.                                                                                 |
+| **Marquee words**             | The`.marquee-item` spans (duplicated once for a seamless loop — edit both copies).                             |
+| **Projects**                  | The three`<article class="panel">` blocks and the three `.mini` cards.                                          |
+| **Portrait photos**           | The two`.portrait-img` `src` URLs (one for dark, one for light).                                                |
+| **Footer watermark size**     | `.foot-word { font-size: clamp(4rem, 26vw, 22rem) }` — the middle `vw` is the live value.                      |
+| **Easter-egg accent colours** | The`accents` array in the script.                                                                               |
 
 ### Replace the placeholder links
 
@@ -240,24 +246,25 @@ no build step.
 
 ## 🧩 Featured Projects (in the portfolio)
 
-| Project | What it is | Stack |
-|---------|------------|-------|
-| **CareerGPT** | AI career assistant — resume scoring, ATS-optimised CV generation, interview coaching, PDF export, streaming responses. | Flutter · Gemini AI · Riverpod · Firebase |
-| **Simul** | Social watch-party platform — YouTube sync, WebRTC voice/screen share, Connect-4 mini-game. | Flutter · LiveKit · WebRTC · Firebase |
-| **CivicPing** | Citizen infrastructure-reporting platform mapping public issues across Pakistan. | Flutter · Firebase · Maps API |
-| **SAUSSync** | Cross-platform academic schedule management for university use. | Flutter · Firebase · Windows |
-| **UniTime** | Constraint-satisfaction timetable generator with conflict resolution. | Flutter · CSP solver |
-| **MilBus** | Research platform mapping Pakistan's military-linked business ecosystem. | Research · Data viz |
+
+| Project       | What it is                                                                                                               | Stack                                        |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
+| **Aestimo**   | AI career assistant — resume scoring, ATS-optimised CV generation, interview coaching, PDF export, streaming responses. | Flutter · Gemini AI · Riverpod · Firebase |
+| **Simul**     | Social watch-party platform — YouTube sync, WebRTC voice/screen share, Connect-4 mini-game.                             | Flutter · LiveKit · WebRTC · Firebase     |
+| **CivicPing** | Citizen infrastructure-reporting platform mapping public issues across Pakistan.                                         | Flutter · Firebase · Maps API              |
+| **SAUSSync**  | Cross-platform academic schedule management for university use.                                                          | Flutter · Firebase · Windows               |
+| **UniTime**   | Constraint-satisfaction timetable generator with conflict resolution.                                                    | Flutter · CSP solve                         |
+|               |                                                                                                                          |                                              |
 
 ---
 
 ## 🗺️ Roadmap
 
-- [ ] Wire the contact form to a real endpoint
-- [ ] Add live project links &amp; GitHub repos
-- [ ] Add a downloadable résumé
-- [ ] Lighthouse pass &amp; Open Graph image
-- [ ] Optional case-study pages
+- [ ]  Wire the contact form to a real endpoint
+- [ ]  Add live project links &amp; GitHub repos
+- [ ]  Add a downloadable résumé
+- [ ]  Lighthouse pass &amp; Open Graph image
+- [ ]  Optional case-study pages
 
 ---
 
@@ -265,10 +272,10 @@ no build step.
 
 **Arsalan Kaleem** — Flutter &amp; AI Developer · Shikarpur, Pakistan
 
-- 🌐 Website — `https://<LIVE_URL>`
-- ✉️ Email — `<EMAIL>`
-- 💼 LinkedIn — `https://linkedin.com/in/<USERNAME>`
-- 🐙 GitHub — `https://github.com/<USERNAME>`
+- 🌐 Website — `https://arsalankaleem.github.io/portfolio/`
+- ✉️ Email — `arsalanabbasi.here@gmail.com`
+- 💼 LinkedIn — `www.linkedin.com/in/arsalankaleem`
+- 🐙 GitHub — `https://github.com/ArsalanKaleem`
 
 ---
 
@@ -290,4 +297,4 @@ Distributed under the **MIT License**. See [`LICENSE`](./LICENSE) for details.
   [Inter](https://fonts.google.com/specimen/Inter),
   [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono)
 
-<p align="center"><sub>Designed &amp; built by Arsalan Kaleem — deliberately.</sub></p>
+<p align="center"><sub>Designed & built by Arsalan Kaleem — deliberately.</sub></p>
