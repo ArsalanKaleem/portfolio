@@ -29,12 +29,11 @@
 <!-- ─── REPO BADGES (need <USERNAME>/<REPO>) ────────────────── -->
 
 <p align="center">
-  <img src="https://img.shields.io/github/license/<USERNAME>/<REPO>?style=flat-square" alt="License">
-  <img src="https://img.shields.io/github/stars/<USERNAME>/<REPO>?style=flat-square" alt="Stars">
-  <img src="https://img.shields.io/github/forks/<USERNAME>/<REPO>?style=flat-square" alt="Forks">
-  <img src="https://img.shields.io/github/last-commit/<USERNAME>/<REPO>?style=flat-square" alt="Last commit">
-  <img src="https://img.shields.io/github/repo-size/<USERNAME>/<REPO>?style=flat-square" alt="Repo size">
-  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square" alt="PRs welcome">
+  <img src="https://img.shields.io/github/license/ArsalanKaleem/portfolio?style=for-the-badge" alt="License">
+  <img src="https://img.shields.io/github/stars/ArsalanKaleem/portfolio?style=for-the-badge" alt="Stars">
+  <img src="https://img.shields.io/github/forks/ArsalanKaleem/portfolio?style=for-the-badge" alt="Forks">
+  <img src="https://img.shields.io/github/last-commit/ArsalanKaleem/portfolio?style=for-the-badge" alt="Last commit">
+  <img src="https://img.shields.io/github/repo-size/ArsalanKaleem/portfolio?style=for-the-badge" alt="Repo size">
 </p>
 
 <p align="center">
