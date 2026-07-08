@@ -29,6 +29,7 @@ button{font-family:inherit;cursor:pointer}
 
 /* ─── TOKENS ───────────────────────────────────────────── */
 :root{
+  --ease-premium:cubic-bezier(.22,1,.36,1);
   --ink:#0c0c0d;--ink-2:#141416;--ink-3:#1b1b1e;
   --bone:#ece8e1;--ash:#8b8983;--faint:#56544f;
   --line:rgba(236,232,225,.10);--line-2:rgba(236,232,225,.18);
@@ -92,15 +93,15 @@ html.light .nav-theme .i-moon{opacity:1;transform:none}
   opacity:0;transition:opacity .6s var(--ease);mix-blend-mode:screen;
 }
 .orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;will-change:transform}
-.orb-1{width:46vmax;height:46vmax;left:-12vmax;top:-10vmax;background:radial-gradient(circle at 35% 35%,rgba(236,232,225,.06),transparent 62%);animation:orb1 34s ease-in-out infinite alternate}
-.orb-2{width:38vmax;height:38vmax;right:-10vmax;top:32%;background:radial-gradient(circle at 60% 40%,rgba(236,232,225,.05),transparent 60%);animation:orb2 42s ease-in-out infinite alternate}
-.orb-3{width:32vmax;height:32vmax;left:22%;bottom:-14vmax;background:radial-gradient(circle at 50% 50%,rgba(236,232,225,.045),transparent 60%);animation:orb3 28s ease-in-out infinite alternate}
+.orb-1{width:52vmax;height:52vmax;left:-14vmax;top:-12vmax;background:radial-gradient(circle at 35% 35%,rgba(236,232,225,.14),transparent 60%);animation:orb1 34s ease-in-out infinite alternate}
+.orb-2{width:44vmax;height:44vmax;right:-12vmax;top:28%;background:radial-gradient(circle at 60% 40%,rgba(236,232,225,.11),transparent 60%);animation:orb2 42s ease-in-out infinite alternate}
+.orb-3{width:40vmax;height:40vmax;left:20%;bottom:-16vmax;background:radial-gradient(circle at 50% 50%,rgba(236,232,225,.10),transparent 60%);animation:orb3 28s ease-in-out infinite alternate}
 @keyframes orb1{to{transform:translate3d(10vw,8vh,0) scale(1.18)}}
 @keyframes orb2{to{transform:translate3d(-9vw,-10vh,0) scale(.88)}}
 @keyframes orb3{to{transform:translate3d(8vw,-7vh,0) scale(1.14)}}
-html.light .orb-1{background:radial-gradient(circle at 35% 35%,rgba(23,20,15,.075),transparent 62%)}
-html.light .orb-2{background:radial-gradient(circle at 60% 40%,rgba(23,20,15,.06),transparent 60%)}
-html.light .orb-3{background:radial-gradient(circle at 50% 50%,rgba(23,20,15,.055),transparent 60%)}
+html.light .orb-1{background:radial-gradient(circle at 35% 35%,rgba(23,20,15,.11),transparent 60%)}
+html.light .orb-2{background:radial-gradient(circle at 60% 40%,rgba(23,20,15,.09),transparent 60%)}
+html.light .orb-3{background:radial-gradient(circle at 50% 50%,rgba(23,20,15,.08),transparent 60%)}
 .grain{
   z-index:2;opacity:.05;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -286,7 +287,7 @@ html.light .about-portrait::after{background:linear-gradient(to top,rgba(0,0,0,.
 .panel-bgmark{position:absolute;top:50%;left:50%;margin-top:-.55em;transform:translateX(-50%);font-family:var(--font-display);font-weight:800;font-size:clamp(4rem,13vw,10rem);letter-spacing:-.06em;color:var(--bone);opacity:.05;user-select:none;will-change:transform;z-index:0}
 /* ── Realistic iPhone frame + screenshot slideshow ── */
 .ph-stage{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
-.phone-float{position:relative;animation:phfloat 7s ease-in-out infinite;filter:drop-shadow(0 30px 42px rgba(0,0,0,.5));will-change:transform}
+.phone-float{position:relative;animation:phfloat 8s cubic-bezier(.45,0,.55,1) infinite;filter:drop-shadow(0 34px 46px rgba(0,0,0,.55)) drop-shadow(0 8px 14px rgba(0,0,0,.35));will-change:transform}
 .phone{
   position:relative;width:clamp(205px,21vw,255px);aspect-ratio:9/19.5;
   border-radius:clamp(6px,.8vw,11px);padding:3px;
@@ -312,42 +313,14 @@ html.light .about-portrait::after{background:linear-gradient(to top,rgba(0,0,0,.
 .ph-shot.on{opacity:1;animation:shotzoom 3.1s linear forwards}
 @keyframes shotzoom{from{transform:scale(1)}to{transform:scale(1.03)}}
 .ph-screen.paused .ph-shot{animation-play-state:paused}
-@keyframes phfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes phfloat{0%,100%{transform:translateY(0) rotate(-.15deg)}50%{transform:translateY(-13px) rotate(.15deg)}}
 .ph-ground{width:64%;height:14px;margin:20px auto 0;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.5),transparent 68%);filter:blur(6px);animation:phground 7s ease-in-out infinite}
 @keyframes phground{0%,100%{transform:scaleX(1);opacity:.85}50%{transform:scaleX(.86);opacity:.55}}
 .ph-dots{display:flex;gap:.42rem;justify-content:center;margin-top:1.35rem}
 .ph-dots .pdot{width:6px;height:6px;padding:0;border:none;border-radius:40px;background:var(--line-2);cursor:pointer;transition:width .4s var(--ease),background .3s}
 .ph-dots .pdot:hover{background:var(--ash)}
 .ph-dots .pdot.on{width:20px;background:var(--bone)}
-/* ── device toggle + desktop (laptop) mockup ── */
-.device-toggle{display:flex;gap:.25rem;padding:.28rem;border:1px solid var(--line-2);border-radius:40px;margin-bottom:1.5rem}
-.dev-btn{width:38px;height:30px;display:flex;align-items:center;justify-content:center;border:none;background:transparent;color:var(--ash);border-radius:40px;cursor:pointer;transition:background .35s var(--ease),color .3s}
-.dev-btn:hover{color:var(--bone)}
-.dev-btn.on{background:var(--bone);color:var(--ink)}
-.dev-stack{display:grid;justify-items:center;align-items:center;perspective:1100px}
-.dev{grid-area:1/1;display:flex;flex-direction:column;align-items:center;visibility:hidden;opacity:0;pointer-events:none;will-change:transform,opacity}
-.dev.on{visibility:visible;opacity:1;pointer-events:auto}
-.laptop-float{position:relative;animation:phfloat 7s ease-in-out infinite;filter:drop-shadow(0 26px 36px rgba(0,0,0,.5));will-change:transform}
-.laptop{position:relative;width:clamp(320px,34vw,460px);will-change:transform}
-.lap-top{padding:3px;border-radius:clamp(8px,.9vw,12px) clamp(8px,.9vw,12px) 0 0;background:linear-gradient(155deg,#63636b 0%,#2a2a2e 26%,#404046 52%,#1c1c20 80%,#4b4b53 100%);box-shadow:inset 0 1px 1px rgba(255,255,255,.16),inset 0 -1px 2px rgba(0,0,0,.55)}
-.lap-body{background:#060607;border-radius:calc(clamp(8px,.9vw,12px) - 3px) calc(clamp(8px,.9vw,12px) - 3px) 0 0;padding:clamp(5px,.55vw,8px) clamp(5px,.55vw,8px) clamp(7px,.7vw,10px)}
-.lap-view{
-  position:relative;
-  aspect-ratio:8/5;
-  overflow:hidden;
-  border-radius:clamp(2px,.3vw,4px);
-  background:linear-gradient(165deg,#141416,#0a0a0b 55%,#17171a);
-  transform:translateZ(0);
-}
-.lap-view.ph-empty{background:radial-gradient(120% 90% at 20% 10%,rgba(236,232,225,.08),transparent 55%),radial-gradient(100% 80% at 85% 90%,rgba(236,232,225,.05),transparent 60%),linear-gradient(165deg,#17171a,#0a0a0b)}
-.lap-cam{position:absolute;top:3px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#3c3c48,#08080b 72%);box-shadow:0 0 0 1px rgba(120,120,140,.2);z-index:3}
-.lap-base{position:relative;height:clamp(9px,1vw,13px);width:114%;margin-left:-7%;background:linear-gradient(#585860,#2a2a2f 45%,#1a1a1e);border-radius:2px 2px clamp(7px,.8vw,10px) clamp(7px,.8vw,10px);box-shadow:inset 0 1px 1px rgba(255,255,255,.14),0 2px 3px rgba(0,0,0,.35)}
-.lap-base::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:13%;height:38%;background:linear-gradient(#1b1b1f,#333339);border-radius:0 0 8px 8px}
-.lap-ground{width:88%}
-.laptop .ph-shot{
-  object-fit:contain;
-  background:#fff; /* fills the empty bars so it doesn't look broken */
-}
+
 .panel-num{font-family:var(--font-mono);font-size:.74rem;color:var(--ash);margin-bottom:1rem}
 .panel-title{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,4.5vw,3.4rem);letter-spacing:-.035em;line-height:1;text-transform:uppercase;color:var(--bone);margin-bottom:1.1rem}
 .panel-desc{font-size:1rem;color:var(--ash);line-height:1.7;margin-bottom:1.5rem;max-width:48ch}
@@ -485,8 +458,6 @@ footer{border-top:1px solid var(--line);padding:clamp(3rem,7vw,5rem) 0 0}
   .panel-num{margin-bottom:.6rem}
   .panel-visual{min-height:auto;padding:1rem 0}
   .phone{width:clamp(210px,62vw,260px)}
-  .laptop{width:clamp(280px,86vw,345px)}
-  .device-toggle{margin-bottom:1.1rem}
   .ph-dots{gap:.36rem;margin-top:1.1rem}
 }
 @media(max-width:380px){
@@ -764,31 +735,13 @@ html.lenis,html.lenis body{height:auto}
         <div class="panel-visual" data-cursor="VIEW">
           <span class="panel-bgmark">CG</span>
           <div class="ph-stage">
-            <div class="device-toggle" role="group" aria-label="CareerGPT device view">
-              <button type="button" class="dev-btn on" data-dev="phone" aria-pressed="true" aria-label="Phone view"><svg width="12" height="16" viewBox="0 0 12 16" fill="none" aria-hidden="true"><rect x="1" y="1" width="10" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="6" cy="12.6" r=".9" fill="currentColor"/></svg></button>
-              <button type="button" class="dev-btn" data-dev="desktop" aria-pressed="false" aria-label="Desktop view"><svg width="17" height="15" viewBox="0 0 17 15" fill="none" aria-hidden="true"><rect x="1" y="1" width="15" height="10" rx="1.6" stroke="currentColor" stroke-width="1.4"/><path d="M6 14h5M8.5 11v3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
-            </div>
-            <div class="dev-stack">
-              <div class="dev dev-phone on">
-                <div class="phone-float">
-                  <div class="phone" data-shots="careergpt" aria-label="CareerGPT phone screenshots">
-                    <div class="ph-body"><div class="ph-screen"><div class="ph-cam" aria-hidden="true"></div><div class="ph-glare" aria-hidden="true"></div></div></div>
-                  </div>
-                  <div class="ph-ground" aria-hidden="true"></div>
-                </div>
-                <div class="ph-dots" data-dots="careergpt" aria-label="CareerGPT phone screenshots"></div>
+            <div class="phone-float">
+              <div class="phone" data-shots="careergpt" aria-label="CareerGPT screenshots">
+                <div class="ph-body"><div class="ph-screen"><div class="ph-cam" aria-hidden="true"></div><div class="ph-glare" aria-hidden="true"></div></div></div>
               </div>
-              <div class="dev dev-desktop">
-                <div class="laptop-float">
-                  <div class="laptop" data-shots="careergpt-desktop" aria-label="CareerGPT desktop screenshots">
-                    <div class="lap-top"><div class="lap-body"><div class="lap-view"><div class="lap-cam" aria-hidden="true"></div><div class="ph-glare" aria-hidden="true"></div></div></div></div>
-                    <div class="lap-base" aria-hidden="true"></div>
-                  </div>
-                  <div class="ph-ground lap-ground" aria-hidden="true"></div>
-                </div>
-                <div class="ph-dots" data-dots="careergpt-desktop" aria-label="CareerGPT desktop screenshots"></div>
-              </div>
+              <div class="ph-ground" aria-hidden="true"></div>
             </div>
+            <div class="ph-dots" data-dots="careergpt" aria-label="CareerGPT screenshots"></div>
           </div>
         </div>
         <div class="panel-info">
@@ -810,31 +763,13 @@ html.lenis,html.lenis body{height:auto}
         <div class="panel-visual" data-cursor="VIEW">
           <span class="panel-bgmark">S</span>
           <div class="ph-stage">
-            <div class="device-toggle" role="group" aria-label="Simul device view">
-              <button type="button" class="dev-btn on" data-dev="phone" aria-pressed="true" aria-label="Phone view"><svg width="12" height="16" viewBox="0 0 12 16" fill="none" aria-hidden="true"><rect x="1" y="1" width="10" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="6" cy="12.6" r=".9" fill="currentColor"/></svg></button>
-              <button type="button" class="dev-btn" data-dev="desktop" aria-pressed="false" aria-label="Desktop view"><svg width="17" height="15" viewBox="0 0 17 15" fill="none" aria-hidden="true"><rect x="1" y="1" width="15" height="10" rx="1.6" stroke="currentColor" stroke-width="1.4"/><path d="M6 14h5M8.5 11v3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
-            </div>
-            <div class="dev-stack">
-              <div class="dev dev-phone on">
-                <div class="phone-float">
-                  <div class="phone" data-shots="simul" aria-label="Simul phone screenshots">
-                    <div class="ph-body"><div class="ph-screen"><div class="ph-cam" aria-hidden="true"></div><div class="ph-glare" aria-hidden="true"></div></div></div>
-                  </div>
-                  <div class="ph-ground" aria-hidden="true"></div>
-                </div>
-                <div class="ph-dots" data-dots="simul" aria-label="Simul phone screenshots"></div>
+            <div class="phone-float">
+              <div class="phone" data-shots="simul" aria-label="Simul screenshots">
+                <div class="ph-body"><div class="ph-screen"><div class="ph-cam" aria-hidden="true"></div><div class="ph-glare" aria-hidden="true"></div></div></div>
               </div>
-              <div class="dev dev-desktop">
-                <div class="laptop-float">
-                  <div class="laptop" data-shots="simul-desktop" aria-label="Simul desktop screenshots">
-                    <div class="lap-top"><div class="lap-body"><div class="lap-view"><div class="lap-cam" aria-hidden="true"></div><div class="ph-glare" aria-hidden="true"></div></div></div></div>
-                    <div class="lap-base" aria-hidden="true"></div>
-                  </div>
-                  <div class="ph-ground lap-ground" aria-hidden="true"></div>
-                </div>
-                <div class="ph-dots" data-dots="simul-desktop" aria-label="Simul desktop screenshots"></div>
-              </div>
+              <div class="ph-ground" aria-hidden="true"></div>
             </div>
+            <div class="ph-dots" data-dots="simul" aria-label="Simul screenshots"></div>
           </div>
         </div>
         <div class="panel-info">
@@ -856,31 +791,13 @@ html.lenis,html.lenis body{height:auto}
         <div class="panel-visual" data-cursor="VIEW">
           <span class="panel-bgmark">CP</span>
           <div class="ph-stage">
-            <div class="device-toggle" role="group" aria-label="CivicPing device view">
-              <button type="button" class="dev-btn on" data-dev="phone" aria-pressed="true" aria-label="Phone view"><svg width="12" height="16" viewBox="0 0 12 16" fill="none" aria-hidden="true"><rect x="1" y="1" width="10" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="6" cy="12.6" r=".9" fill="currentColor"/></svg></button>
-              <button type="button" class="dev-btn" data-dev="desktop" aria-pressed="false" aria-label="Desktop view"><svg width="17" height="15" viewBox="0 0 17 15" fill="none" aria-hidden="true"><rect x="1" y="1" width="15" height="10" rx="1.6" stroke="currentColor" stroke-width="1.4"/><path d="M6 14h5M8.5 11v3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
-            </div>
-            <div class="dev-stack">
-              <div class="dev dev-phone on">
-                <div class="phone-float">
-                  <div class="phone" data-shots="civicping" aria-label="CivicPing phone screenshots">
-                    <div class="ph-body"><div class="ph-screen"><div class="ph-cam" aria-hidden="true"></div><div class="ph-glare" aria-hidden="true"></div></div></div>
-                  </div>
-                  <div class="ph-ground" aria-hidden="true"></div>
-                </div>
-                <div class="ph-dots" data-dots="civicping" aria-label="CivicPing phone screenshots"></div>
+            <div class="phone-float">
+              <div class="phone" data-shots="civicping" aria-label="CivicPing screenshots">
+                <div class="ph-body"><div class="ph-screen"><div class="ph-cam" aria-hidden="true"></div><div class="ph-glare" aria-hidden="true"></div></div></div>
               </div>
-              <div class="dev dev-desktop">
-                <div class="laptop-float">
-                  <div class="laptop" data-shots="civicping-desktop" aria-label="CivicPing desktop screenshots">
-                    <div class="lap-top"><div class="lap-body"><div class="lap-view"><div class="lap-cam" aria-hidden="true"></div><div class="ph-glare" aria-hidden="true"></div></div></div></div>
-                    <div class="lap-base" aria-hidden="true"></div>
-                  </div>
-                  <div class="ph-ground lap-ground" aria-hidden="true"></div>
-                </div>
-                <div class="ph-dots" data-dots="civicping-desktop" aria-label="CivicPing desktop screenshots"></div>
-              </div>
+              <div class="ph-ground" aria-hidden="true"></div>
             </div>
+            <div class="ph-dots" data-dots="civicping" aria-label="CivicPing screenshots"></div>
           </div>
         </div>
         <div class="panel-info">
@@ -1231,16 +1148,6 @@ html.lenis,html.lenis body{height:auto}
           gsap.fromTo(phone,{rotateY:-16,rotateX:7,y:26},{rotateY:10,rotateX:-4,y:-26,ease:'none',
             scrollTrigger:{trigger:panel,start:'top bottom',end:'bottom top',scrub:.7}});
         }
-        var lap=panel.querySelector('.laptop');
-        if(lap){
-          if(FINE){
-            gsap.fromTo(lap,{y:18},{y:-18,ease:'none',
-              scrollTrigger:{trigger:panel,start:'top bottom',end:'bottom top',scrub:.7}});
-          } else {
-            gsap.fromTo(lap,{rotateY:-9,rotateX:4,y:18},{rotateY:6,rotateX:-3,y:-18,ease:'none',
-              scrollTrigger:{trigger:panel,start:'top bottom',end:'bottom top',scrub:.7}});
-          }
-        }
         gsap.fromTo(mark,{yPercent:18},{yPercent:-18,ease:'none',
           scrollTrigger:{trigger:panel,start:'top bottom',end:'bottom top',scrub:.7}});
         // reveal contents on enter
@@ -1328,33 +1235,12 @@ html.lenis,html.lenis body{height:auto}
     simul: [
     ],
     civicping: [
-    ],
-    /* DESKTOP screenshots — 16:10 or 16:9 images work best here */
-    'careergpt-desktop': [
-    'assets/login.png',
-    'assets/settings.png',
-    'assets/dashboard.png',
-    'assets/resume.png',
-    'assets/insights.png',
-    'assets/interview.png',
-     'assets/ats.png',
-     'assets/score.png',
-     'assets/about.png',
-
-
-
-      
-
-    ],
-    'simul-desktop': [
-    ],
-    'civicping-desktop': [
     ]
   };
-  document.querySelectorAll('[data-shots]').forEach(function(ph){
+  document.querySelectorAll('.phone[data-shots]').forEach(function(ph){
     var key=ph.getAttribute('data-shots');
     var urls=(SHOTS[key]||[]).filter(function(u){return u && typeof u==='string' && u.indexOf('PASTE')===-1;});
-    var screen=ph.querySelector('.ph-screen,.lap-view');
+    var screen=ph.querySelector('.ph-screen');
     var dotsWrap=document.querySelector('.ph-dots[data-dots="'+key+'"]');
     if(!urls.length){ screen.classList.add('ph-empty'); if(dotsWrap) dotsWrap.style.display='none'; return; }
     var idx=0, hover=false, imgs=[], dots=[];
@@ -1383,40 +1269,12 @@ html.lenis,html.lenis body{height:auto}
     hoverEl.addEventListener('mouseleave',function(){ hover=false; screen.classList.remove('paused'); });
   });
 
-  document.querySelectorAll('.ph-stage').forEach(function(stage){
-    var btns=stage.querySelectorAll('.dev-btn'); if(!btns.length) return;
-    var busy=false;
-    btns.forEach(function(btn){
-      btn.addEventListener('click',function(){
-        if(busy || btn.classList.contains('on')) return;
-        var dev=btn.getAttribute('data-dev');
-        var from=stage.querySelector('.dev.on');
-        var to=stage.querySelector('.dev-'+dev);
-        if(!from || !to) return;
-        btns.forEach(function(b){ var on=b===btn; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); });
-        if(hasGSAP && !REDUCE){
-          busy=true;
-          var dir = dev==='desktop' ? 1 : -1;
-          gsap.to(from,{opacity:0,rotationY:-26*dir,scale:.9,duration:.32,ease:'power2.in',onComplete:function(){
-            from.classList.remove('on'); gsap.set(from,{clearProps:'all'});
-            to.classList.add('on');
-            gsap.fromTo(to,{opacity:0,rotationY:26*dir,scale:.9},
-              {opacity:1,rotationY:0,scale:1,duration:.55,ease:'power3.out',clearProps:'all',
-               onComplete:function(){ busy=false; }});
-          }});
-        } else {
-          from.classList.remove('on'); to.classList.add('on');
-        }
-      });
-    });
-  });
-
   /* ============ 3D INTERACTIONS — WORK SECTION ============ */
   if(hasGSAP && FINE && !REDUCE){
     document.querySelectorAll('.panel-visual').forEach(function(pv){
       var mark=pv.querySelector('.panel-bgmark');
       var devs=[];
-      [['.phone',24,18],['.laptop',13,9]].forEach(function(cfg){
+      [['.phone',24,18]].forEach(function(cfg){
         var el=pv.querySelector(cfg[0]); if(!el) return;
         devs.push({
           ry:gsap.quickTo(el,'rotationY',{duration:.7,ease:'power3.out'}),
