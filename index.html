@@ -331,12 +331,23 @@ html.light .about-portrait::after{background:linear-gradient(to top,rgba(0,0,0,.
 .laptop{position:relative;width:clamp(320px,34vw,460px);will-change:transform}
 .lap-top{padding:3px;border-radius:clamp(8px,.9vw,12px) clamp(8px,.9vw,12px) 0 0;background:linear-gradient(155deg,#63636b 0%,#2a2a2e 26%,#404046 52%,#1c1c20 80%,#4b4b53 100%);box-shadow:inset 0 1px 1px rgba(255,255,255,.16),inset 0 -1px 2px rgba(0,0,0,.55)}
 .lap-body{background:#060607;border-radius:calc(clamp(8px,.9vw,12px) - 3px) calc(clamp(8px,.9vw,12px) - 3px) 0 0;padding:clamp(5px,.55vw,8px) clamp(5px,.55vw,8px) clamp(7px,.7vw,10px)}
-.lap-view{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:clamp(2px,.3vw,4px);background:linear-gradient(165deg,#141416,#0a0a0b 55%,#17171a);transform:translateZ(0)}
+.lap-view{
+  position:relative;
+  aspect-ratio:8/5;
+  overflow:hidden;
+  border-radius:clamp(2px,.3vw,4px);
+  background:linear-gradient(165deg,#141416,#0a0a0b 55%,#17171a);
+  transform:translateZ(0);
+}
 .lap-view.ph-empty{background:radial-gradient(120% 90% at 20% 10%,rgba(236,232,225,.08),transparent 55%),radial-gradient(100% 80% at 85% 90%,rgba(236,232,225,.05),transparent 60%),linear-gradient(165deg,#17171a,#0a0a0b)}
 .lap-cam{position:absolute;top:3px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#3c3c48,#08080b 72%);box-shadow:0 0 0 1px rgba(120,120,140,.2);z-index:3}
 .lap-base{position:relative;height:clamp(9px,1vw,13px);width:114%;margin-left:-7%;background:linear-gradient(#585860,#2a2a2f 45%,#1a1a1e);border-radius:2px 2px clamp(7px,.8vw,10px) clamp(7px,.8vw,10px);box-shadow:inset 0 1px 1px rgba(255,255,255,.14),0 2px 3px rgba(0,0,0,.35)}
 .lap-base::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:13%;height:38%;background:linear-gradient(#1b1b1f,#333339);border-radius:0 0 8px 8px}
 .lap-ground{width:88%}
+.laptop .ph-shot{
+  object-fit:contain;
+  background:#fff; /* fills the empty bars so it doesn't look broken */
+}
 .panel-num{font-family:var(--font-mono);font-size:.74rem;color:var(--ash);margin-bottom:1rem}
 .panel-title{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,4.5vw,3.4rem);letter-spacing:-.035em;line-height:1;text-transform:uppercase;color:var(--bone);margin-bottom:1.1rem}
 .panel-desc{font-size:1rem;color:var(--ash);line-height:1.7;margin-bottom:1.5rem;max-width:48ch}
@@ -1320,15 +1331,18 @@ html.lenis,html.lenis body{height:auto}
     ],
     /* DESKTOP screenshots — 16:10 or 16:9 images work best here */
     'careergpt-desktop': [
-      'https://res.cloudinary.com/dfd2kp7s5/image/upload/v1783467447/login_jacqfw.png',
-      'https://res.cloudinary.com/dfd2kp7s5/image/upload/v1783467441/dashboard_bshmep.png',
-      'https://res.cloudinary.com/dfd2kp7s5/image/upload/v1783467442/upload_zgmulf.png',
-      'https://res.cloudinary.com/dfd2kp7s5/image/upload/v1783467440/resume_score_d4byo7.png',
-      'https://res.cloudinary.com/dfd2kp7s5/image/upload/v1783467440/chat_bn2psx.png',
-      'https://res.cloudinary.com/dfd2kp7s5/image/upload/v1783467441/settings_y2myhd.png',
-      'https://res.cloudinary.com/dfd2kp7s5/image/upload/v1783467441/interview_bpmjqe.png',
-      'https://res.cloudinary.com/dfd2kp7s5/image/upload/v1783467442/about_fgw2jq.png',
-      'https://res.cloudinary.com/dfd2kp7s5/image/upload/v1783467448/insights_h2help.png',
+    'assets/login.png',
+    'assets/settings.png',
+    'assets/dashboard.png',
+    'assets/resume.png',
+    'assets/insights.png',
+    'assets/interview.png',
+     'assets/ats.png',
+     'assets/score.png',
+     'assets/about.png',
+
+
+
       
 
     ],
