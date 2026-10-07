@@ -743,6 +743,9 @@
       #nav-overlay.open .ov-link:nth-child(4) a {
         transition-delay: 0.24s;
       }
+      #nav-overlay.open .ov-link:nth-child(5) a {
+        transition-delay: 0.3s;
+      }
       .ov-link a:hover {
         color: var(--ash);
       }
@@ -1644,6 +1647,101 @@
         border-radius: 40px;
       }
 
+      /* ─── PUBLICATIONS ───────────────────────────────────── */
+      #publications {
+        padding: clamp(5rem, 11vw, 9rem) 0;
+        border-top: 1px solid var(--line);
+      }
+      .publication-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(220px, 0.7fr);
+        gap: clamp(2rem, 7vw, 7rem);
+        padding: clamp(1.5rem, 4vw, 3.5rem);
+        border: 1px solid var(--line);
+        background:
+          radial-gradient(
+            60vw 40vw at 100% 0%,
+            rgba(236, 232, 225, 0.045),
+            transparent 62%
+          ),
+          var(--ink-2);
+      }
+      .publication-type,
+      .publication-journal,
+      .publication-meta,
+      .publication-stat-label {
+        font-family: var(--font-mono);
+        text-transform: uppercase;
+      }
+      .publication-type {
+        color: var(--ash);
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        margin-bottom: 1.5rem;
+      }
+      .publication-title {
+        max-width: 23ch;
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 4.2vw, 3.4rem);
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        line-height: 1.04;
+        color: var(--bone);
+        text-wrap: balance;
+      }
+      .publication-journal {
+        margin-top: 1.5rem;
+        color: var(--bone);
+        font-size: 0.76rem;
+        letter-spacing: 0.04em;
+      }
+      .publication-meta {
+        margin-top: 0.45rem;
+        color: var(--faint);
+        font-size: 0.68rem;
+        letter-spacing: 0.04em;
+      }
+      .publication-summary {
+        max-width: 62ch;
+        margin-top: 1.5rem;
+        color: var(--ash);
+        font-size: 0.98rem;
+        line-height: 1.75;
+      }
+      .publication-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        margin-top: 2rem;
+      }
+      .publication-findings {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-top: 1px solid var(--line);
+      }
+      .publication-stat {
+        padding: 1.25rem 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .publication-stat-value {
+        display: block;
+        font-family: var(--font-display);
+        font-size: clamp(2.2rem, 4vw, 3.5rem);
+        font-weight: 800;
+        letter-spacing: -0.05em;
+        line-height: 1;
+        color: var(--bone);
+      }
+      .publication-stat-label {
+        display: block;
+        margin-top: 0.45rem;
+        color: var(--ash);
+        font-size: 0.62rem;
+        letter-spacing: 0.06em;
+        line-height: 1.5;
+      }
+
       /* ─── CONTACT ──────────────────────────────────────────── */
       #contact {
         padding: clamp(5rem, 12vw, 10rem) 0;
@@ -2150,6 +2248,7 @@
         /* SPACING — sections breathe less */
         #about,
         #skills,
+        #publications,
         #contact {
           padding: 3.5rem 0;
         }
@@ -2170,6 +2269,11 @@
         /* GRIDS */
         .mini-grid {
           grid-template-columns: 1fr;
+        }
+        .publication-card {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+          padding: 1.25rem;
         }
         .f-row {
           grid-template-columns: 1fr;
@@ -2285,6 +2389,7 @@
         <a href="#about" class="nav-link">About</a>
         <a href="#skills" class="nav-link">Services</a>
         <a href="#work" class="nav-link">Work</a>
+        <a href="#publications" class="nav-link">Publications</a>
         <a href="#contact" class="nav-link">Contact</a>
       </div>
       <div class="nav-actions">
@@ -2334,6 +2439,7 @@
       <div class="ov-link"><a href="#about" data-close>About</a></div>
       <div class="ov-link"><a href="#skills" data-close>Services</a></div>
       <div class="ov-link"><a href="#work" data-close>Work</a></div>
+      <div class="ov-link"><a href="#publications" data-close>Publications</a></div>
       <div class="ov-link"><a href="#contact" data-close>Contact</a></div>
     </div>
 
@@ -2871,6 +2977,87 @@
         </div>
       </section>
 
+      <!-- PUBLICATIONS -->
+      <section id="publications">
+        <div class="shell">
+          <div class="sec-head">
+            <span class="tag">Research</span><span class="sec-line"></span
+            ><span class="sec-title">Publications</span>
+          </div>
+          <article class="publication-card">
+            <div class="publication-copy">
+              <div class="publication-type">Research publication · 2026</div>
+              <h3 class="publication-title">
+                What Open Geospatial Data Can and Cannot Tell Us About
+                Geographic Access to Rural Public Primary Care: A Village-Level
+                Case Study from Sindh, Pakistan
+              </h3>
+              <p class="publication-journal">
+                International Journal of Advanced Research
+              </p>
+              <p class="publication-meta">
+                Arsalan Kaleem · Vol. 3, No. 5 · pp. 1606–1624
+              </p>
+              <p class="publication-summary">
+                A village-level study of travel time to health facilities
+                across Sindh, Pakistan. Comparing OpenStreetMap facilities with
+                an expanded layer informed by the provincial primary-care
+                register, the research measures how missing facilities can
+                distort estimates of geographic access to care.
+              </p>
+              <div class="publication-links">
+                <a
+                  href="https://ijournalar.com/site/index.php/ijar/article/view/606"
+                  class="btn btn-solid"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="OPEN"
+                  ><span class="btn-t">Read publication</span></a
+                >
+                <a
+                  href="http://arsalankaleem.me/Rural-Healthcare-Accessibility-Index--RHAI-/"
+                  class="btn btn-ghost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="OPEN"
+                  ><span class="btn-t">Explore map</span></a
+                >
+                <a
+                  href="https://github.com/ArsalanKaleem/Rural-Healthcare-Accessibility-Index--RHAI-"
+                  class="btn btn-ghost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="VISIT"
+                  ><span class="btn-t">Research &amp; data</span></a
+                >
+              </div>
+            </div>
+            <div class="publication-findings" aria-label="Study highlights">
+              <div class="publication-stat">
+                <span class="publication-stat-value">5,159</span>
+                <span class="publication-stat-label"
+                  >Villages analysed across Sindh</span
+                >
+              </div>
+              <div class="publication-stat">
+                <span class="publication-stat-value">2.01×</span>
+                <span class="publication-stat-label"
+                  >Overestimate of population-weighted median travel time using
+                  open-data-only facilities</span
+                >
+              </div>
+              <div class="publication-stat">
+                <span class="publication-stat-value">10×</span>
+                <span class="publication-stat-label"
+                  >Overestimate of the population more than 30 minutes from
+                  care</span
+                >
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <!-- CONTACT -->
       <section id="contact">
         <div class="contact-glow" aria-hidden="true"></div>
@@ -3009,6 +3196,13 @@
                 return false;
               "
               >Works</a
+            ><a
+              href="#publications"
+              onclick="
+                goTo('#publications');
+                return false;
+              "
+              >Publications</a
             ><a
               href="#contact"
               onclick="
