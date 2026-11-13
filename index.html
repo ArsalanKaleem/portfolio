@@ -1593,16 +1593,21 @@
         margin-right: 0.3em;
       }
       .mini-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-        gap: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
         padding-bottom: clamp(3rem, 7vw, 5rem);
         perspective: 900px;
       }
       .mini {
+        display: grid;
+        grid-template-columns:
+          2rem minmax(9rem, 0.75fr) minmax(15rem, 1.5fr)
+          minmax(12rem, 1fr) auto;
+        align-items: center;
+        gap: 1rem;
         border: 1px solid var(--line);
-        border-radius: 4px;
-        padding: 1.75rem;
+        padding: 1.1rem 1.4rem;
         transition:
           background 0.4s var(--ease),
           border-color 0.4s;
@@ -1617,26 +1622,27 @@
         font-family: var(--font-mono);
         font-size: 0.72rem;
         color: var(--faint);
-        margin-bottom: 1.25rem;
+        margin: 0;
       }
       .mini-name {
         font-family: var(--font-display);
-        font-size: 1.25rem;
+        font-size: 1.1rem;
         font-weight: 700;
         letter-spacing: -0.02em;
         color: var(--bone);
-        margin-bottom: 0.6rem;
+        margin: 0;
       }
       .mini-desc {
-        font-size: 0.86rem;
+        font-size: 0.8rem;
         color: var(--ash);
-        line-height: 1.65;
-        margin-bottom: 1.1rem;
+        line-height: 1.5;
+        margin: 0;
       }
       .mini-tags {
         display: flex;
         flex-wrap: wrap;
         gap: 0.35rem;
+        min-width: 0;
       }
       .mini-tag {
         font-family: var(--font-mono);
@@ -1649,12 +1655,13 @@
       .mini-links {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-top: 1.25rem;
+        justify-content: flex-end;
+        gap: 0.4rem;
+        margin-top: 0;
       }
       .mini-links .btn {
-        padding: 0.65rem 1.15rem;
-        font-size: 0.7rem;
+        padding: 0.5rem 0.7rem;
+        font-size: 0.62rem;
       }
 
       /* ─── PUBLICATIONS ───────────────────────────────────── */
@@ -2152,6 +2159,32 @@
           right: 1rem;
           max-width: 11rem;
         }
+        .mini {
+          grid-template-columns: 2rem minmax(0, 1fr) auto;
+          gap: 0.7rem 1rem;
+        }
+        .mini-num {
+          grid-column: 1;
+          grid-row: 1;
+        }
+        .mini-name {
+          grid-column: 2;
+          grid-row: 1;
+        }
+        .mini-desc {
+          grid-column: 2;
+          grid-row: 2;
+        }
+        .mini-tags {
+          grid-column: 2;
+          grid-row: 3;
+        }
+        .mini-links {
+          grid-column: 3;
+          grid-row: 1 / span 3;
+          flex-direction: column;
+          align-items: flex-start;
+        }
         .about-grid {
           grid-template-columns: 1fr;
           gap: 3rem;
@@ -2303,7 +2336,35 @@
 
         /* GRIDS */
         .mini-grid {
-          grid-template-columns: 1fr;
+          gap: 0.55rem;
+        }
+        .mini {
+          grid-template-columns: 2rem minmax(0, 1fr);
+          gap: 0.6rem 0.8rem;
+          padding: 1rem;
+        }
+        .mini-num {
+          grid-column: 1;
+          grid-row: 1;
+        }
+        .mini-name {
+          grid-column: 2;
+          grid-row: 1;
+        }
+        .mini-desc {
+          grid-column: 2;
+          grid-row: 2;
+        }
+        .mini-tags {
+          grid-column: 2;
+          grid-row: 3;
+        }
+        .mini-links {
+          grid-column: 2;
+          grid-row: 4;
+          flex-direction: row;
+          flex-wrap: wrap;
+          margin-top: 0.1rem;
         }
         .publication-card {
           padding: 1.1rem 1rem 1.1rem 3.25rem;
@@ -2997,9 +3058,8 @@
               <div class="mini-num">04</div>
               <div class="mini-name">ForgeOS</div>
               <p class="mini-desc">
-                Discover trending repositories, find beginner-friendly issues,
-                and get AI-powered guidance for your open source journey. One
-                Flutter codebase. Five platforms. Zero backend.
+                Discover open-source projects and beginner issues with
+                AI-assisted guidance across five Flutter platforms.
               </p>
               <div class="mini-tags">
                 <span class="mini-tag">Flutter</span>
@@ -3011,9 +3071,8 @@
               <div class="mini-num">05</div>
               <div class="mini-name">TEMPUS</div>
               <p class="mini-desc">
-                Intelligent university timetable scheduling system using
-                Constraint Satisfaction Problem (CSP) techniques to automate
-                scheduling and reduce manual workload by over 90%.
+                Automates university timetables with constraint satisfaction,
+                reducing manual scheduling work by over 90%.
               </p>
               <div class="mini-tags">
                 <span class="mini-tag">Flutter</span>
@@ -3025,10 +3084,8 @@
               <div class="mini-num">06</div>
               <div class="mini-name">sindhinorm</div>
               <p class="mini-desc">
-                A corpus-guided, native-validated Sindhi spelling normalizer
-                for text typed on mixed Urdu, Persian, and Arabic keyboards.
-                Restores 94.0% of altered words while changing 1.35% of clean
-                words.
+                Native-reviewed Sindhi spelling normalization for mixed Urdu,
+                Persian, and Arabic keyboard input.
               </p>
               <div class="mini-tags">
                 <span class="mini-tag">Python</span>
@@ -3042,7 +3099,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor="OPEN"
-                  ><span class="btn-t">Software record</span></a
+                  ><span class="btn-t">Zenodo</span></a
                 >
                 <a
                   href="https://pypi.org/project/sindhinorm/"
@@ -3050,7 +3107,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor="OPEN"
-                  ><span class="btn-t">Install on PyPI</span></a
+                  ><span class="btn-t">PyPI</span></a
                 >
                 <a
                   href="https://github.com/ArsalanKaleem/MorphoTok-SD-UR"
