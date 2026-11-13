@@ -139,6 +139,9 @@
       html.light #nav .nav-bg {
         background: rgba(243, 239, 231, 0.62);
       }
+      html.light .nav-links {
+        background: rgba(23, 20, 15, 0.035);
+      }
       html.light .contact-glow {
         background: radial-gradient(
           circle,
@@ -604,6 +607,9 @@
         transform: scaleX(1);
       }
       .nav-logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
         font-family: var(--font-display);
         font-size: 1.05rem;
         font-weight: 800;
@@ -612,72 +618,90 @@
         z-index: 1;
         user-select: none;
       }
+      .nav-logo::before {
+        content: "";
+        width: 0.52rem;
+        height: 0.52rem;
+        border-radius: 50%;
+        background: var(--bone);
+        box-shadow: 0 0 0 4px var(--line);
+      }
       .nav-links {
         position: absolute;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
         display: flex;
-        gap: 0.15rem;
+        gap: 0.2rem;
         align-items: center;
         z-index: 1;
+        padding: 0.28rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.035);
+        -webkit-backdrop-filter: blur(14px);
+        backdrop-filter: blur(14px);
       }
       .nav-link {
         position: relative;
         font-family: var(--font-mono);
-        font-size: 0.74rem;
-        letter-spacing: 0.03em;
+        font-size: 0.68rem;
+        letter-spacing: 0.06em;
         color: var(--ash);
-        padding: 0.5rem 0.85rem;
+        padding: 0.58rem 0.9rem;
+        border-radius: 999px;
         text-transform: uppercase;
-        transition: color 0.25s;
-      }
-      .nav-link::after {
-        content: "";
-        position: absolute;
-        left: 0.85rem;
-        right: 0.85rem;
-        bottom: 0.35rem;
-        height: 1px;
-        background: var(--bone);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.35s var(--ease);
+        transition:
+          color 0.25s,
+          background 0.25s var(--ease);
       }
       .nav-link:hover {
+        background: var(--ink-2);
         color: var(--bone);
-      }
-      .nav-link:hover::after,
-      .nav-link.active::after {
-        transform: scaleX(1);
       }
       .nav-link.active {
-        color: var(--bone);
+        background: var(--bone);
+        color: var(--ink);
       }
       .nav-cta {
         z-index: 1;
         font-family: var(--font-mono);
-        font-size: 0.74rem;
+        font-size: 0.68rem;
         letter-spacing: 0.03em;
         text-transform: uppercase;
         background: var(--bone);
         color: var(--ink);
-        padding: 0.6rem 1.15rem;
-        border: none;
+        padding: 0.68rem 1.25rem;
+        border: 1px solid var(--bone);
         border-radius: 40px;
-        transition: opacity 0.25s;
+        transition:
+          opacity 0.25s,
+          transform 0.25s var(--ease);
       }
       .nav-cta:hover {
         opacity: 0.88;
+        transform: translateY(-1px);
       }
       #nav-burger {
         display: none;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
         gap: 5px;
-        background: none;
-        border: none;
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.035);
+        border: 1px solid var(--line);
+        border-radius: 50%;
         padding: 0.5rem;
         z-index: 1003;
+        transition:
+          background 0.25s,
+          border-color 0.25s;
+      }
+      #nav-burger:hover {
+        background: var(--ink-2);
+        border-color: var(--line-2);
       }
       #nav-burger span {
         display: block;
@@ -1924,6 +1948,58 @@
       .social:hover .arr {
         transform: translate(3px, -3px);
       }
+      .social-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        min-width: 0;
+      }
+      .social-icon {
+        display: grid;
+        flex: 0 0 auto;
+        place-items: center;
+        width: 2.2rem;
+        height: 2.2rem;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: var(--ink-2);
+        transition:
+          background 0.3s,
+          border-color 0.3s,
+          transform 0.3s var(--ease);
+      }
+      .social-icon .github-mark {
+        width: 1rem;
+        height: 1rem;
+        margin: 0;
+        vertical-align: 0;
+      }
+      .social-icon svg:not(.github-mark) {
+        width: 1rem;
+        height: 1rem;
+      }
+      .social:hover .social-icon {
+        background: var(--ink-3);
+        border-color: var(--line-2);
+        transform: scale(1.05);
+      }
+      .social-copy {
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        gap: 0.08rem;
+      }
+      .social-detail {
+        overflow: hidden;
+        color: var(--ash);
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        font-weight: 400;
+        letter-spacing: 0;
+        text-overflow: ellipsis;
+        text-transform: none;
+        white-space: nowrap;
+      }
       .form {
         display: flex;
         flex-direction: column;
@@ -2022,27 +2098,44 @@
       .f-submit:hover::after {
         opacity: 1;
       }
-      #form-ok {
+      #form-status {
         display: none;
         border: 1px solid var(--line-2);
         border-radius: 4px;
         padding: 1.75rem;
         margin-top: 0.5rem;
       }
-      #form-ok.show {
+      #form-status.show {
         display: block;
       }
-      #form-ok .ok-t {
+      #form-status.error {
+        border-color: rgba(186, 91, 91, 0.45);
+      }
+      #form-status .ok-t {
         font-family: var(--font-display);
         font-size: 1.2rem;
         font-weight: 700;
         color: var(--bone);
         margin-bottom: 0.3rem;
       }
-      #form-ok .ok-s {
+      #form-status.error .ok-t {
+        color: #b85c5c;
+      }
+      #form-status .ok-s {
         font-family: var(--font-mono);
         font-size: 0.78rem;
         color: var(--ash);
+      }
+      .form-note {
+        max-width: 48ch;
+        margin-top: 0.2rem;
+        color: var(--faint);
+        font-size: 0.72rem;
+        line-height: 1.5;
+      }
+      .f-submit:disabled {
+        cursor: wait;
+        opacity: 0.65;
       }
 
       /* ─── FOOTER ───────────────────────────────────────────── */
@@ -2283,7 +2376,7 @@
           grid-column: 1/-1;
         }
       }
-      @media (max-width: 620px) {
+      @media (max-width: 840px) {
         .nav-links,
         .nav-cta {
           display: none;
@@ -2291,6 +2384,8 @@
         #nav-burger {
           display: flex;
         }
+      }
+      @media (max-width: 620px) {
         #nav {
           padding: 1rem var(--pad);
         }
@@ -3465,20 +3560,46 @@
                   class="social anim"
                   href="mailto:arsalanabbasi.here@gmail.com"
                   data-cursor="SEND"
-                  >Email <span class="arr">↗</span></a
+                  ><span class="social-brand"
+                    ><span class="social-icon" aria-hidden="true"
+                      ><svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect x="3" y="5" width="18" height="14" rx="2" />
+                        <path d="m3 7 9 6 9-6" />
+                      </svg></span
+                    ><span class="social-copy"
+                      ><span>Email</span
+                      ><small class="social-detail"
+                        >arsalanabbasi.here@gmail.com</small
+                      ></span
+                    ></span
+                  ><span class="arr">↗</span></a
                 >
                 <a
                   class="social anim"
                   href="https://github.com/ArsalanKaleem"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                   data-cursor="VISIT"
-                  ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>GitHub
-                  <span class="arr">↗</span></a
+                  ><span class="social-brand"
+                    ><span class="social-icon" aria-hidden="true"
+                      ><svg class="github-mark" viewBox="0 0 16 16"
+                        ><use href="#github-icon"></use></svg></span
+                    ><span class="social-copy"
+                      ><span>GitHub</span
+                      ><small class="social-detail">@ArsalanKaleem</small></span
+                    ></span
+                  ><span class="arr">↗</span></a
                 >
                 <a
                   class="social anim"
-                  href="www.linkedin.com/in/arsalankaleem"
+                  href="https://www.linkedin.com/in/arsalankaleem"
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor="VISIT"
@@ -3514,15 +3635,36 @@
               </div>
             </div>
             <div>
-              <form class="form" id="contact-form" novalidate>
+              <form
+                class="form"
+                id="contact-form"
+                action="https://formsubmit.co/arsalanabbasi.here@gmail.com"
+                method="POST"
+              >
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="New message from portfolio"
+                />
+                <input type="hidden" name="_template" value="table" />
+                <input
+                  type="text"
+                  name="_honey"
+                  tabindex="-1"
+                  autocomplete="off"
+                  aria-hidden="true"
+                  style="display: none"
+                />
                 <div class="f-row">
                   <div class="f-field anim">
                     <label class="f-label" for="name">Name</label
                     ><input
                       class="f-input"
                       id="name"
+                      name="name"
                       type="text"
                       placeholder="Your name"
+                      autocomplete="name"
                       required
                     />
                   </div>
@@ -3531,8 +3673,10 @@
                     ><input
                       class="f-input"
                       id="email"
+                      name="email"
                       type="email"
                       placeholder="your@email.com"
+                      autocomplete="email"
                       required
                     />
                   </div>
@@ -3542,6 +3686,7 @@
                   ><textarea
                     class="f-textarea"
                     id="message"
+                    name="message"
                     placeholder="Tell me about it…"
                     required
                   ></textarea>
@@ -3559,10 +3704,14 @@
                       /></svg
                   ></span>
                 </button>
+                <p class="form-note">
+                  Messages are delivered via FormSubmit. Please don't include
+                  sensitive information.
+                </p>
               </form>
-              <div id="form-ok">
-                <div class="ok-t">Message sent ✦</div>
-                <div class="ok-s">I'll get back to you within 24 hours.</div>
+              <div id="form-status" role="status" aria-live="polite" hidden>
+                <div class="ok-t"></div>
+                <div class="ok-s"></div>
               </div>
             </div>
           </div>
@@ -3635,9 +3784,9 @@
               rel="noopener"
               ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>GitHub</a
             ><a
-              href="www.linkedin.com/in/arsalankaleem"
+              href="https://www.linkedin.com/in/arsalankaleem"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               >LinkedIn</a
             ><a
               href="https://orcid.org/my-orcid?orcid=0009-0002-9054-6965"
@@ -13748,28 +13897,56 @@
         /* ============ CONTACT FORM ============ */
         document
           .getElementById("contact-form")
-          .addEventListener("submit", function (e) {
+          .addEventListener("submit", async function (e) {
             e.preventDefault();
             var btn = this.querySelector(".f-submit"),
-              t = btn.querySelector(".fs-t");
+              t = btn.querySelector(".fs-t"),
+              status = document.getElementById("form-status"),
+              statusTitle = status.querySelector(".ok-t"),
+              statusCopy = status.querySelector(".ok-s"),
+              originalLabel = t.innerHTML;
+            status.hidden = true;
+            status.className = "";
+            status.setAttribute("role", "status");
+            status.setAttribute("aria-live", "polite");
+            statusTitle.textContent = "";
+            statusCopy.textContent = "";
+            btn.disabled = true;
+            btn.setAttribute("aria-busy", "true");
             t.textContent = "Sending…";
-            btn.style.opacity = ".7";
-            var self = this;
-            setTimeout(function () {
-              if (hasGSAP) {
-                gsap.to(self, {
-                  opacity: 0,
-                  y: -8,
-                  duration: 0.4,
-                  onComplete: done,
-                });
-              } else done();
+
+            try {
+              var response = await fetch(
+                  "https://formsubmit.co/ajax/arsalanabbasi.here@gmail.com",
+                  {
+                    method: "POST",
+                    headers: { Accept: "application/json" },
+                    body: new URLSearchParams(new FormData(this)),
+                  },
+                ),
+                result = await response.json();
+              if (
+                !response.ok ||
+                !result ||
+                (result.success !== "true" && result.success !== true)
+              ) {
+                throw new Error(
+                  result && result.message
+                    ? result.message
+                    : "The email service could not accept the message.",
+                );
+              }
+
+              var self = this;
+              statusTitle.textContent = "Message submitted ✦";
+              statusCopy.textContent =
+                "Thanks! If this is your first submission, confirm the FormSubmit verification email in your inbox to activate delivery.";
               function done() {
                 self.style.display = "none";
-                var ok = document.getElementById("form-ok");
-                ok.classList.add("show");
+                status.hidden = false;
+                status.classList.add("show");
                 if (hasGSAP)
-                  gsap.from(ok, {
+                  gsap.from(status, {
                     opacity: 0,
                     scale: 0.96,
                     y: 10,
@@ -13777,7 +13954,30 @@
                     ease: "back.out(1.5)",
                   });
               }
-            }, 1100);
+              this.reset();
+              if (hasGSAP) {
+                gsap.to(self, {
+                  opacity: 0,
+                  y: -8,
+                  duration: 0.4,
+                  onComplete: done,
+                });
+              } else {
+                done();
+              }
+            } catch (error) {
+              console.error("Contact form submission failed:", error);
+              status.hidden = false;
+              status.className = "show error";
+              status.setAttribute("role", "alert");
+              status.setAttribute("aria-live", "assertive");
+              statusTitle.textContent = "Message couldn't be sent";
+              statusCopy.textContent =
+                "Please try again or email arsalanabbasi.here@gmail.com directly.";
+              btn.disabled = false;
+              btn.removeAttribute("aria-busy");
+              t.innerHTML = originalLabel;
+            }
           });
 
         var SHOTS = {
