@@ -18,22 +18,23 @@
         } catch (e) {}
       })();
     </script>
-    <title>Arsalan Kaleem — Flutter & AI Developer</title>
+    <title>Arsalan Kaleem — ML, AI &amp; NLP Researcher</title>
     <meta
       name="description"
-      content="Arsalan Kaleem is a Flutter & AI developer building premium mobile and desktop experiences with Firebase, Gemini AI, and modern design systems."
+      content="Arsalan Kaleem is an ML, AI and NLP researcher and Flutter developer working across language technology, remote sensing, and AI/GIS research."
     />
     <meta
       property="og:title"
-      content="Arsalan Kaleem — Flutter & AI Developer"
+      content="Arsalan Kaleem — ML, AI &amp; NLP Researcher"
     />
     <meta
       property="og:description"
-      content="Building premium mobile and AI-powered digital experiences."
+      content="ML, AI and NLP research across language technology, remote sensing, and AI/GIS."
     />
     <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
@@ -1392,6 +1393,45 @@
         border-radius: clamp(3px, 0.4vw, 6px);
         background: linear-gradient(165deg, #141416, #0a0a0b 55%, #17171a);
       }
+      .ph-screen.ph-loading::before,
+      .ph-screen.ph-loading::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        transition: opacity 0.45s var(--ease);
+      }
+      .ph-screen.ph-loading::before {
+        z-index: 3;
+        background: linear-gradient(
+          110deg,
+          transparent 35%,
+          rgba(236, 232, 225, 0.1) 50%,
+          transparent 65%
+        );
+        transform: translateX(-100%);
+        animation: ph-shimmer 1.8s ease-in-out infinite;
+      }
+      .ph-screen.ph-loading::after {
+        z-index: 2;
+        inset: 12% 8%;
+        border: 1px solid rgba(236, 232, 225, 0.05);
+        border-radius: 4px;
+        background:
+          linear-gradient(rgba(236, 232, 225, 0.12), rgba(236, 232, 225, 0.12))
+            8% 8% / 38% 3% no-repeat,
+          linear-gradient(rgba(236, 232, 225, 0.08), rgba(236, 232, 225, 0.08))
+            8% 18% / 84% 34% no-repeat,
+          linear-gradient(rgba(236, 232, 225, 0.1), rgba(236, 232, 225, 0.1))
+            8% 62% / 54% 3% no-repeat,
+          linear-gradient(rgba(236, 232, 225, 0.06), rgba(236, 232, 225, 0.06))
+            8% 73% / 84% 12% no-repeat;
+      }
+      .ph-screen.ph-ready::before,
+      .ph-screen.ph-ready::after {
+        opacity: 0;
+        animation: none;
+      }
       .ph-screen.ph-empty {
         background:
           radial-gradient(
@@ -1451,6 +1491,7 @@
       .ph-shot {
         position: absolute;
         inset: 0;
+        z-index: 1;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -1464,6 +1505,11 @@
       .ph-shot.on {
         opacity: 1;
         animation: shotzoom 3.1s linear forwards;
+      }
+      @keyframes ph-shimmer {
+        to {
+          transform: translateX(100%);
+        }
       }
       @keyframes shotzoom {
         from {
@@ -1593,38 +1639,45 @@
         margin-right: 0.3em;
       }
       .mini-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 0.65rem;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
         padding-bottom: clamp(3rem, 7vw, 5rem);
         perspective: 900px;
       }
+      .mini:nth-child(3) {
+        grid-column: 1 / -1;
+      }
       .mini {
         display: grid;
-        grid-template-columns:
-          2rem minmax(9rem, 0.75fr) minmax(15rem, 1.5fr)
-          minmax(12rem, 1fr) auto;
-        align-items: center;
-        gap: 1rem;
+        grid-template-columns: 2rem minmax(0, 1fr) auto;
+        grid-template-rows: auto auto auto;
+        align-items: start;
+        gap: 0.5rem 1rem;
         border: 1px solid var(--line);
-        padding: 1.1rem 1.4rem;
+        padding: 1.1rem 1.25rem;
         transition:
           background 0.4s var(--ease),
           border-color 0.4s;
         transform-style: preserve-3d;
         will-change: transform;
+        background: rgba(255, 255, 255, 0.012);
       }
       .mini:hover {
         background: var(--ink-2);
         border-color: var(--line-2);
       }
       .mini-num {
+        grid-column: 1;
+        grid-row: 1;
         font-family: var(--font-mono);
         font-size: 0.72rem;
         color: var(--faint);
         margin: 0;
       }
       .mini-name {
+        grid-column: 2;
+        grid-row: 1;
         font-family: var(--font-display);
         font-size: 1.1rem;
         font-weight: 700;
@@ -1633,12 +1686,16 @@
         margin: 0;
       }
       .mini-desc {
+        grid-column: 2;
+        grid-row: 2;
         font-size: 0.8rem;
         color: var(--ash);
         line-height: 1.5;
         margin: 0;
       }
       .mini-tags {
+        grid-column: 2;
+        grid-row: 3;
         display: flex;
         flex-wrap: wrap;
         gap: 0.35rem;
@@ -1653,6 +1710,9 @@
         border-radius: 40px;
       }
       .mini-links {
+        grid-column: 3;
+        grid-row: 1 / span 3;
+        align-self: center;
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-end;
@@ -2336,7 +2396,11 @@
 
         /* GRIDS */
         .mini-grid {
+          grid-template-columns: 1fr;
           gap: 0.55rem;
+        }
+        .mini:nth-child(3) {
+          grid-column: auto;
         }
         .mini {
           grid-template-columns: 2rem minmax(0, 1fr);
@@ -2362,6 +2426,7 @@
         .mini-links {
           grid-column: 2;
           grid-row: 4;
+          align-self: start;
           flex-direction: row;
           flex-wrap: wrap;
           margin-top: 0.1rem;
@@ -2581,8 +2646,8 @@
           </h1>
           <div class="hero-meta">
             <p class="hero-sub anim">
-              Flutter &amp; AI Developer building scalable mobile applications,
-              AI-powered products, and modern digital experiences.
+              ML, AI &amp; NLP Researcher and Flutter developer working across
+              language technology, remote sensing, and AI + GIS research.
             </p>
             <div class="hero-actions anim">
               <a
@@ -2661,10 +2726,9 @@
               <p class="about-body anim">
                 I'm a final-year Computer Science student at
                 <b>Shaikh Ayaz University, Shikarpur</b>, specializing in
-                <b>Flutter development</b> and <b>AI-powered applications</b>. I
-                build cross-platform applications for mobile, Windows desktop,
-                and the web with a focus on clean architecture, performance, and
-                intuitive user experiences.
+                <b>Flutter development</b> and <b>AI-powered applications</b>.
+                I'm also an <b>ML, AI &amp; NLP researcher</b>, with work
+                spanning language technology, remote sensing, and AI/GIS.
               </p>
               <p class="about-body anim">
                 My work includes <b>Firebase</b>, <b>Gemini AI</b>,
@@ -2708,6 +2772,16 @@
                 </div>
               </div>
               <div class="timeline">
+                <div class="t-row anim">
+                  <div class="t-year">2026</div>
+                  <div>
+                    <div class="t-role">AI &amp; GIS Research</div>
+                    <div class="t-place">
+                      Machine Learning · AI · NLP · Remote Sensing · Geospatial
+                      Analysis
+                    </div>
+                  </div>
+                </div>
                 <div class="t-row anim">
                   <div class="t-year">2025</div>
                   <div>
@@ -2977,13 +3051,13 @@
           <article class="panel" style="--tint: rgba(255, 180, 140, 0.05)">
             <div class="shell panel-grid">
               <div class="panel-visual" data-cursor="VIEW">
-                <span class="panel-bgmark">F1</span>
+                <span class="panel-bgmark">N</span>
                 <div class="ph-stage">
                   <div class="phone-float">
                     <div
                       class="phone"
-                      data-shots="f1vision"
-                      aria-label="F1 Vision screenshots"
+                      data-shots="nuntius"
+                      aria-label="Nuntius screenshots"
                     >
                       <div class="ph-body">
                         <div class="ph-screen">
@@ -2996,35 +3070,36 @@
                   </div>
                   <div
                     class="ph-dots"
-                    data-dots="f1vision"
-                    aria-label="F1 Vision screenshots"
+                    data-dots="nuntius"
+                    aria-label="Nuntius screenshots"
                   ></div>
                 </div>
               </div>
               <div class="panel-info">
-                <div class="panel-num">03 — Sports Analytics</div>
-                <h3 class="panel-title">F1 Vision</h3>
+                <div class="panel-num">03 — Private Chat Analytics</div>
+                <h3 class="panel-title">Nuntius</h3>
                 <p class="panel-desc">
-                  A real-time Formula 1 dashboard built with Flutter, featuring
-                  live telemetry gauges, race-control events, driver and
-                  constructor standings, interactive analytics, and season-wide
-                  insights powered by the OpenF1 and Jolpica APIs.
+                  Turn WhatsApp exports into interactive analytics, a
+                  Wrapped-style story, a readable archive, and PDF reports —
+                  all processed on-device so private conversations never leave
+                  your phone.
                 </p>
                 <div class="panel-tags">
                   <span class="panel-tag">Flutter</span
-                  ><span class="panel-tag">Firebase</span
-                  ><span class="panel-tag">OpenF1 API</span
-                  ><span class="panel-tag">Jolpica API</span
-                  ><span class="panel-tag">Riverpod</span
-                  ><span class="panel-tag">Real-Time Analytics</span>
+                  ><span class="panel-tag">Dart</span
+                  ><span class="panel-tag">WhatsApp Analytics</span
+                  ><span class="panel-tag">On-device</span
+                  ><span class="panel-tag">PDF Reports</span>
                 </div>
                 <div class="panel-links">
                   <a
-                    href="https://github.com/ArsalanKaleem/F1-Vision/releases/tag/1.0.0"
+                    href="https://github.com/ArsalanKaleem/Nuntius/releases/tag/1.0%2C0"
                     class="btn btn-solid"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     data-cursor="OPEN"
                     ><span class="btn-t"
-                      ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>download<svg
+                      ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>Download APK<svg
                         width="12"
                         height="12"
                         viewBox="0 0 12 12"
@@ -3038,11 +3113,13 @@
                         /></svg></span
                   ></a>
                   <a
-                    href="https://github.com/ArsalanKaleem/F1-Vision"
+                    href="https://github.com/ArsalanKaleem/Nuntius"
                     class="btn btn-ghost"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     data-cursor="VISIT"
                     ><span class="btn-t"
-                      ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>GitHub</span
+                      ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>Source</span
                     ></a
                   >
                 </div>
@@ -3066,18 +3143,52 @@
                 <span class="mini-tag">GitHub API</span>
                 <span class="mini-tag">Gemini AI</span>
               </div>
+              <div class="mini-links">
+                <a
+                  href="https://github.com/ArsalanKaleem/forge-os"
+                  class="btn btn-ghost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="VISIT"
+                  ><span class="btn-t"
+                    ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>GitHub</span
+                  ></a
+                >
+              </div>
             </div>
             <div class="mini anim">
               <div class="mini-num">05</div>
-              <div class="mini-name">TEMPUS</div>
+              <div class="mini-name">F1 Vision</div>
               <p class="mini-desc">
-                Automates university timetables with constraint satisfaction,
-                reducing manual scheduling work by over 90%.
+                A real-time Formula 1 dashboard for live telemetry, race
+                control, standings, and season-wide analytics.
               </p>
               <div class="mini-tags">
                 <span class="mini-tag">Flutter</span>
-                <span class="mini-tag">Firebase</span>
-                <span class="mini-tag">CSP</span>
+                <span class="mini-tag">OpenF1</span>
+                <span class="mini-tag">Jolpica</span>
+              </div>
+              <div class="mini-links">
+                <a
+                  href="https://github.com/ArsalanKaleem/F1-Vision/releases/tag/1.0.0"
+                  class="btn btn-ghost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="OPEN"
+                  ><span class="btn-t"
+                    ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>Download</span
+                  ></a
+                >
+                <a
+                  href="https://github.com/ArsalanKaleem/F1-Vision"
+                  class="btn btn-ghost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="VISIT"
+                  ><span class="btn-t"
+                    ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>GitHub</span
+                  ></a
+                >
               </div>
             </div>
             <div class="mini anim">
@@ -3219,6 +3330,14 @@
                   data-cursor="OPEN"
                   ><span class="btn-t">Journal article</span></a
                 >
+                <a
+                  href="https://arsalankaleem.me/Sindh-Water-Access-index-SWAI-/docs/?d=Mithi"
+                  class="btn btn-ghost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="OPEN"
+                  ><span class="btn-t">Explore SWAI · Mithi</span></a
+                >
               </div>
             </div>
           </article>
@@ -3245,6 +3364,16 @@
                   rel="noopener noreferrer"
                   data-cursor="OPEN"
                   ><span class="btn-t">Read preprint</span></a
+                >
+                <a
+                  href="https://github.com/ArsalanKaleem/LAFZ"
+                  class="btn btn-ghost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="VISIT"
+                  ><span class="btn-t"
+                    ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>LAFZ code</span
+                  ></a
                 >
               </div>
             </div>
@@ -3351,9 +3480,33 @@
                   class="social anim"
                   href="www.linkedin.com/in/arsalankaleem"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                   data-cursor="VISIT"
                   >LinkedIn <span class="arr">↗</span></a
+                >
+                <a
+                  class="social anim"
+                  href="https://orcid.org/my-orcid?orcid=0009-0002-9054-6965"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="VISIT"
+                  >ORCID <span class="arr">↗</span></a
+                >
+                <a
+                  class="social anim"
+                  href="https://zenodo.org/me/uploads?q=&amp;f=shared_with_me%3Afalse&amp;l=list&amp;p=1&amp;s=10&amp;sort=newest"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="VISIT"
+                  >Zenodo <span class="arr">↗</span></a
+                >
+                <a
+                  class="social anim"
+                  href="https://scholar.google.com/citations?user=ajyK85MAAAAJ&amp;hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="VISIT"
+                  >Google Scholar <span class="arr">↗</span></a
                 >
                 <a class="social anim" href="#" id="resume" data-cursor="OPEN"
                   >Resume <span class="arr">↓</span></a
@@ -3486,6 +3639,21 @@
               target="_blank"
               rel="noopener"
               >LinkedIn</a
+            ><a
+              href="https://orcid.org/my-orcid?orcid=0009-0002-9054-6965"
+              target="_blank"
+              rel="noopener noreferrer"
+              >ORCID</a
+            ><a
+              href="https://zenodo.org/me/uploads?q=&amp;f=shared_with_me%3Afalse&amp;l=list&amp;p=1&amp;s=10&amp;sort=newest"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Zenodo</a
+            ><a
+              href="https://scholar.google.com/citations?user=ajyK85MAAAAJ&amp;hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Google Scholar</a
             >
           </div>
         </div>
@@ -13629,21 +13797,21 @@
             "https://res.cloudinary.com/dfd2kp7s5/image/upload/v1783853541/chrome_AwHGP1909S_gjefco.png",
             "https://res.cloudinary.com/dfd2kp7s5/image/upload/v1783853541/chrome_j32CX6cZca_kououo.png",
           ],
-          f1vision: [
-            "https://res.cloudinary.com/dfd2kp7s5/image/upload/v1785107389/f1_vision_wmMGzfeXkz_vb599s.png",
-            "https://res.cloudinary.com/dfd2kp7s5/image/upload/v1785107389/f1_vision_cHAJMejlkO_bvyvtx.png",
-            "https://res.cloudinary.com/dfd2kp7s5/image/upload/v1785107388/f1_vision_aLX2csGVee_lnyhyg.png",
-            "https://res.cloudinary.com/dfd2kp7s5/image/upload/v1785107388/f1_vision_MlM7ESAeEL_lcyl6a.png",
-            "https://res.cloudinary.com/dfd2kp7s5/image/upload/v1785107388/f1_vision_Jh4OB93a9G_s1zz2t.png",
-            "https://res.cloudinary.com/dfd2kp7s5/image/upload/v1785107388/f1_vision_iSo93niUZj_ae5pam.png",
-            "https://res.cloudinary.com/dfd2kp7s5/image/upload/v1785107388/f1_vision_vVwb4jiAJi_tix9lx.png",
-            "https://res.cloudinary.com/dfd2kp7s5/image/upload/v1785107388/f1_vision_veFebSDnfZ_w6baib.png",
+          nuntius: [
+            "assets/nuntius/dashboard.webp",
+            "assets/nuntius/wrapped.webp",
+            "assets/nuntius/import.webp",
           ],
         };
         document.querySelectorAll(".phone[data-shots]").forEach(function (ph) {
           var key = ph.getAttribute("data-shots");
           var urls = (SHOTS[key] || []).filter(function (u) {
             return u && typeof u === "string" && u.indexOf("PASTE") === -1;
+          }).map(function (u) {
+            return u.replace(
+              "/image/upload/",
+              "/image/upload/f_auto,q_auto,w_640/",
+            );
           });
           var screen = ph.querySelector(".ph-screen");
           var dotsWrap = document.querySelector(
@@ -13654,18 +13822,27 @@
             if (dotsWrap) dotsWrap.style.display = "none";
             return;
           }
+          screen.classList.add("ph-loading");
           var idx = 0,
             hover = false,
             imgs = [],
             dots = [];
           urls.forEach(function (u, i) {
             var img = document.createElement("img");
-            img.src = u;
             img.alt = "";
-            img.loading = i ? "lazy" : "eager";
+            img.loading = "lazy";
             img.decoding = "async";
+            img.fetchPriority = "low";
             img.draggable = false;
             img.className = "ph-shot" + (i ? "" : " on");
+            img.addEventListener(
+              "load",
+              function () {
+                if (i === idx) screen.classList.add("ph-ready");
+              },
+              { once: true },
+            );
+            img.src = u;
             screen.appendChild(img);
             imgs.push(img);
             if (dotsWrap) {
@@ -13684,11 +13861,29 @@
             }
           });
           function show(n) {
-            if (n === idx && imgs[idx].classList.contains("on")) return;
+            var next = (n + imgs.length) % imgs.length;
+            var im = imgs[next];
+            if (!im.complete || !im.naturalWidth) {
+              if (!im.dataset.loadPending) {
+                im.dataset.loadPending = "true";
+                im.loading = "eager";
+                im.addEventListener(
+                  "load",
+                  function () {
+                    im.dataset.loadPending = "";
+                    show(next);
+                  },
+                  { once: true },
+                );
+              }
+              return;
+            }
+            screen.classList.add("ph-ready");
+            if (next === idx && im.classList.contains("on")) return;
             imgs[idx].classList.remove("on");
             if (dots[idx]) dots[idx].classList.remove("on");
-            idx = (n + imgs.length) % imgs.length;
-            var im = imgs[idx];
+            idx = next;
+            im = imgs[idx];
             im.classList.remove("on");
             void im.offsetWidth;
             im.classList.add("on");
