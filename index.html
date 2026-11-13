@@ -1663,87 +1663,104 @@
         border-top: 1px solid var(--line);
       }
       .publications-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+        counter-reset: publication;
       }
       .publication-card {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr);
-        gap: 1.5rem;
-        padding: clamp(1.5rem, 4vw, 3.5rem);
+        position: relative;
+        padding: 1.35rem 17rem 1.35rem 4.25rem;
         border: 1px solid var(--line);
         background:
-          radial-gradient(
-            60vw 40vw at 100% 0%,
-            rgba(236, 232, 225, 0.045),
-            transparent 62%
+          linear-gradient(
+            100deg,
+            rgba(236, 232, 225, 0.035),
+            transparent 58%
           ),
           var(--ink-2);
+        counter-increment: publication;
+        transition:
+          border-color 0.3s var(--ease),
+          background-color 0.3s var(--ease);
       }
-      .publication-card--wide {
-        grid-column: 1 / -1;
-        grid-template-columns: minmax(0, 1.5fr) minmax(220px, 0.7fr);
-        gap: clamp(2rem, 7vw, 7rem);
-      }
-      .publication-card:not(.publication-card--wide) .publication-findings {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        column-gap: 1rem;
-      }
-      .publication-card:not(.publication-card--wide) .publication-stat-value {
-        font-size: clamp(1.7rem, 2.4vw, 2.5rem);
-      }
-      .publication-card:not(.publication-card--wide) .publication-title {
-        font-size: clamp(1.55rem, 2.8vw, 2.35rem);
-      }
-      .publication-type,
-      .publication-journal,
-      .publication-meta,
-      .publication-stat-label {
+      .publication-card::before {
+        content: counter(publication, decimal-leading-zero);
+        position: absolute;
+        top: 1.55rem;
+        left: 1.5rem;
+        color: var(--faint);
         font-family: var(--font-mono);
-        text-transform: uppercase;
+        font-size: 0.7rem;
+        letter-spacing: 0.06em;
+      }
+      .publication-card:hover {
+        border-color: var(--line-2);
+      }
+      .publication-copy {
+        min-width: 0;
       }
       .publication-type {
+        font-family: var(--font-mono);
+        text-transform: uppercase;
         color: var(--ash);
-        font-size: 0.7rem;
+        font-size: 0.62rem;
         letter-spacing: 0.1em;
-        margin-bottom: 1.5rem;
+        margin-bottom: 0.45rem;
       }
       .publication-title {
-        max-width: 23ch;
+        max-width: none;
         font-family: var(--font-display);
-        font-size: clamp(1.8rem, 4.2vw, 3.4rem);
+        font-size: clamp(1.1rem, 1.4vw, 1.35rem);
         font-weight: 700;
-        letter-spacing: -0.04em;
-        line-height: 1.04;
+        letter-spacing: -0.025em;
+        line-height: 1.16;
         color: var(--bone);
         text-wrap: balance;
       }
       .publication-journal {
-        margin-top: 1.5rem;
+        display: inline;
         color: var(--bone);
-        font-size: 0.76rem;
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
         letter-spacing: 0.04em;
+        text-transform: uppercase;
       }
       .publication-meta {
-        margin-top: 0.45rem;
+        display: inline;
+        margin-left: 0.5rem;
         color: var(--faint);
-        font-size: 0.68rem;
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
         letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .publication-meta::before {
+        content: "· ";
       }
       .publication-summary {
-        max-width: 62ch;
-        margin-top: 1.5rem;
+        max-width: 82ch;
+        margin-top: 0.5rem;
         color: var(--ash);
-        font-size: 0.98rem;
-        line-height: 1.75;
+        font-size: 0.82rem;
+        line-height: 1.55;
       }
       .publication-links {
+        position: absolute;
+        top: 50%;
+        right: 1.5rem;
         display: flex;
-        flex-wrap: wrap;
-        gap: 0.7rem;
-        margin-top: 2rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.45rem;
+        width: max-content;
+        max-width: 14rem;
+        margin-top: 0;
+        transform: translateY(-50%);
+      }
+      .publication-links .btn {
+        padding: 0.6rem 0.9rem;
+        font-size: 0.66rem;
       }
       .github-mark {
         display: inline-block;
@@ -1753,34 +1770,6 @@
         vertical-align: -0.12em;
         fill: currentColor;
       }
-      .publication-findings {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        border-top: 1px solid var(--line);
-      }
-      .publication-stat {
-        padding: 1.25rem 0;
-        border-bottom: 1px solid var(--line);
-      }
-      .publication-stat-value {
-        display: block;
-        font-family: var(--font-display);
-        font-size: clamp(2.2rem, 4vw, 3.5rem);
-        font-weight: 800;
-        letter-spacing: -0.05em;
-        line-height: 1;
-        color: var(--bone);
-      }
-      .publication-stat-label {
-        display: block;
-        margin-top: 0.45rem;
-        color: var(--ash);
-        font-size: 0.62rem;
-        letter-spacing: 0.06em;
-        line-height: 1.5;
-      }
-
       /* ─── CONTACT ──────────────────────────────────────────── */
       #contact {
         padding: clamp(5rem, 12vw, 10rem) 0;
@@ -2156,6 +2145,13 @@
 
       /* ─── RESPONSIVE ───────────────────────────────────────── */
       @media (max-width: 880px) {
+        .publication-card {
+          padding-right: 13rem;
+        }
+        .publication-links {
+          right: 1rem;
+          max-width: 11rem;
+        }
         .about-grid {
           grid-template-columns: 1fr;
           gap: 3rem;
@@ -2310,18 +2306,20 @@
           grid-template-columns: 1fr;
         }
         .publication-card {
-          grid-template-columns: 1fr;
-          gap: 2rem;
-          padding: 1.25rem;
+          padding: 1.1rem 1rem 1.1rem 3.25rem;
         }
-        .publications-grid {
-          grid-template-columns: 1fr;
+        .publication-card::before {
+          top: 1.3rem;
+          left: 1rem;
         }
-        .publication-card--wide {
-          grid-column: auto;
-        }
-        .publication-card:not(.publication-card--wide) .publication-findings {
-          grid-template-columns: 1fr;
+        .publication-links {
+          position: static;
+          flex-direction: row;
+          flex-wrap: wrap;
+          width: auto;
+          max-width: none;
+          margin-top: 0.8rem;
+          transform: none;
         }
         .f-row {
           grid-template-columns: 1fr;
@@ -3093,11 +3091,9 @@
                 Arsalan Kaleem · Vol. 3, No. 5 · pp. 1606–1624
               </p>
               <p class="publication-summary">
-                A village-level study of travel time to health facilities
-                across Sindh, Pakistan. Comparing OpenStreetMap facilities with
-                an expanded layer informed by the provincial primary-care
-                register, the research measures how missing facilities can
-                distort estimates of geographic access to care.
+                Compares open health-facility data with a registry-informed
+                layer to show how missing facilities distort travel-time
+                estimates across rural Sindh.
               </p>
               <div class="publication-links">
                 <a
@@ -3128,28 +3124,6 @@
                 >
               </div>
             </div>
-            <div class="publication-findings" aria-label="Study highlights">
-              <div class="publication-stat">
-                <span class="publication-stat-value">5,159</span>
-                <span class="publication-stat-label"
-                  >Villages analysed across Sindh</span
-                >
-              </div>
-              <div class="publication-stat">
-                <span class="publication-stat-value">2.01×</span>
-                <span class="publication-stat-label"
-                  >Overestimate of population-weighted median travel time using
-                  open-data-only facilities</span
-                >
-              </div>
-              <div class="publication-stat">
-                <span class="publication-stat-value">10×</span>
-                <span class="publication-stat-label"
-                  >Overestimate of the population more than 30 minutes from
-                  care</span
-                >
-              </div>
-            </div>
           </article>
           <article class="publication-card">
             <div class="publication-copy">
@@ -3167,9 +3141,9 @@
                 November 2026
               </p>
               <p class="publication-summary">
-                This study estimates village-level drinking-water accessibility
-                in Sindh from open geospatial data and examines how using annual
-                rainfall can invert the resulting accessibility rankings.
+                Assesses village-level drinking-water access across Sindh and
+                shows how annual rainfall can invert village accessibility
+                rankings.
               </p>
               <div class="publication-links">
                 <a
@@ -3202,10 +3176,9 @@
               <p class="publication-journal">Preprints.org</p>
               <p class="publication-meta">Arsalan Kaleem · October 2026</p>
               <p class="publication-summary">
-                A study of vocabulary extension for Urdu, Sindhi, Pashto,
-                Amharic, Hindi, and Tamil. It compares extended models with
-                equally trained baselines and evaluates the effects of a
-                pre-tokenizer limitation on compression and generation.
+                Tests post-hoc vocabulary extension for Urdu, Sindhi, Pashto,
+                Amharic, Hindi, and Tamil, separating vocabulary gains from
+                additional training.
               </p>
               <div class="publication-links">
                 <a
@@ -3215,26 +3188,6 @@
                   rel="noopener noreferrer"
                   data-cursor="OPEN"
                   ><span class="btn-t">Read preprint</span></a
-                >
-              </div>
-            </div>
-            <div class="publication-findings" aria-label="Study highlights">
-              <div class="publication-stat">
-                <span class="publication-stat-value">6</span>
-                <span class="publication-stat-label"
-                  >Languages evaluated</span
-                >
-              </div>
-              <div class="publication-stat">
-                <span class="publication-stat-value">45–72%</span>
-                <span class="publication-stat-label"
-                  >Shorter tokenized sequences</span
-                >
-              </div>
-              <div class="publication-stat">
-                <span class="publication-stat-value">1.75–3.64×</span>
-                <span class="publication-stat-label"
-                  >Faster generation in evaluated settings</span
                 >
               </div>
             </div>
@@ -3249,11 +3202,8 @@
               <p class="publication-journal">Preprints.org</p>
               <p class="publication-meta">Arsalan Kaleem · November 2026</p>
               <p class="publication-summary">
-                This work evaluates whether step-level guards trained on
-                synthetic data transfer to real tool-using and coding agents.
-                It finds a substantial gap between synthetic benchmark results
-                and performance on real-agent datasets, and releases
-                step-labeled evaluation resources.
+                Finds synthetic benchmark scores overstate how step-level
+                guards transfer to real tool-using and coding agents.
               </p>
               <div class="publication-links">
                 <a
@@ -3266,28 +3216,8 @@
                 >
               </div>
             </div>
-            <div class="publication-findings" aria-label="Study highlights">
-              <div class="publication-stat">
-                <span class="publication-stat-value">0.98</span>
-                <span class="publication-stat-label"
-                  >Trajectory F1 on the synthetic benchmark</span
-                >
-              </div>
-              <div class="publication-stat">
-                <span class="publication-stat-value">0.33 / 0.46</span>
-                <span class="publication-stat-label"
-                  >F1 on real tool-use agent datasets</span
-                >
-              </div>
-              <div class="publication-stat">
-                <span class="publication-stat-value">1 / 48</span>
-                <span class="publication-stat-label"
-                  >Coding-agent hijacks blocked by the evaluated guard</span
-                >
-              </div>
-            </div>
           </article>
-          <article class="publication-card publication-card--wide">
+          <article class="publication-card">
             <div class="publication-copy">
               <div class="publication-type">Preprint · 2026</div>
               <h3 class="publication-title">
@@ -3298,10 +3228,9 @@
               <p class="publication-journal">Preprints.org</p>
               <p class="publication-meta">Arsalan Kaleem · October 2026</p>
               <p class="publication-summary">
-                A satellite-based assessment of cropland recovery across Sindh
-                following the 2022 floods. Matching flooded and non-flooded
-                cropland cells reveals persistent vegetation deficits during
-                summer growing seasons, despite recovery in winter.
+                Tracks 555,309 cropland cells across 22 Sindh districts;
+                summer vegetation deficits persisted years after the 2022
+                floods.
               </p>
               <div class="publication-links">
                 <a
@@ -3322,24 +3251,6 @@
                     ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>Code &amp; results</span
                   ></a
                 >
-              </div>
-            </div>
-            <div class="publication-findings" aria-label="Study highlights">
-              <div class="publication-stat">
-                <span class="publication-stat-value">555,309</span>
-                <span class="publication-stat-label"
-                  >Cropland cells tracked across Sindh</span
-                >
-              </div>
-              <div class="publication-stat">
-                <span class="publication-stat-value">87,447</span>
-                <span class="publication-stat-label"
-                  >Matched flooded and non-flooded cell pairs</span
-                >
-              </div>
-              <div class="publication-stat">
-                <span class="publication-stat-value">22</span>
-                <span class="publication-stat-label">Districts analysed</span>
               </div>
             </div>
           </article>
