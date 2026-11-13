@@ -2108,6 +2108,40 @@
       #form-status.show {
         display: block;
       }
+      .status-heading {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        margin-bottom: 0.45rem;
+      }
+      .status-mark {
+        position: relative;
+        display: grid;
+        flex: 0 0 auto;
+        place-items: center;
+        width: 2.2rem;
+        height: 2.2rem;
+        border: 1px solid var(--line-2);
+        border-radius: 50%;
+        color: var(--bone);
+        font-size: 1.05rem;
+        opacity: 0;
+        transform: scale(0.65);
+      }
+      #form-status.success .status-mark {
+        animation: status-pop 0.55s var(--ease) 0.12s both;
+      }
+      #form-status.success .status-mark::after {
+        content: "";
+        position: absolute;
+        inset: -5px;
+        border: 1px solid var(--line-2);
+        border-radius: inherit;
+        animation: status-ring 0.9s var(--ease) 0.2s both;
+      }
+      #form-status:not(.success) .status-mark {
+        display: none;
+      }
       #form-status.error {
         border-color: rgba(186, 91, 91, 0.45);
       }
@@ -2116,7 +2150,7 @@
         font-size: 1.2rem;
         font-weight: 700;
         color: var(--bone);
-        margin-bottom: 0.3rem;
+        margin: 0;
       }
       #form-status.error .ok-t {
         color: #b85c5c;
@@ -2136,6 +2170,22 @@
       .f-submit:disabled {
         cursor: wait;
         opacity: 0.65;
+      }
+      @keyframes status-pop {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      @keyframes status-ring {
+        from {
+          opacity: 0.7;
+          transform: scale(0.75);
+        }
+        to {
+          opacity: 0;
+          transform: scale(1.35);
+        }
       }
 
       /* ─── FOOTER ───────────────────────────────────────────── */
@@ -3710,7 +3760,10 @@
                 </p>
               </form>
               <div id="form-status" role="status" aria-live="polite" hidden>
-                <div class="ok-t"></div>
+                <div class="status-heading">
+                  <span class="status-mark" aria-hidden="true">✓</span>
+                  <div class="ok-t"></div>
+                </div>
                 <div class="ok-s"></div>
               </div>
             </div>
@@ -13938,13 +13991,13 @@
               }
 
               var self = this;
-              statusTitle.textContent = "Message submitted ✦";
+              statusTitle.textContent = "Message sent ✦";
               statusCopy.textContent =
-                "Thanks! If this is your first submission, confirm the FormSubmit verification email in your inbox to activate delivery.";
+                "Thanks for reaching out. I'll get back to you within 24 hours.";
               function done() {
                 self.style.display = "none";
                 status.hidden = false;
-                status.classList.add("show");
+                status.classList.add("show", "success");
                 if (hasGSAP)
                   gsap.from(status, {
                     opacity: 0,
