@@ -1594,7 +1594,7 @@
       }
       .mini-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
         gap: 1rem;
         padding-bottom: clamp(3rem, 7vw, 5rem);
         perspective: 900px;
@@ -1662,10 +1662,15 @@
         padding: clamp(5rem, 11vw, 9rem) 0;
         border-top: 1px solid var(--line);
       }
+      .publications-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+      }
       .publication-card {
         display: grid;
-        grid-template-columns: minmax(0, 1.5fr) minmax(220px, 0.7fr);
-        gap: clamp(2rem, 7vw, 7rem);
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.5rem;
         padding: clamp(1.5rem, 4vw, 3.5rem);
         border: 1px solid var(--line);
         background:
@@ -1676,8 +1681,21 @@
           ),
           var(--ink-2);
       }
-      .publication-card + .publication-card {
-        margin-top: 1.5rem;
+      .publication-card--wide {
+        grid-column: 1 / -1;
+        grid-template-columns: minmax(0, 1.5fr) minmax(220px, 0.7fr);
+        gap: clamp(2rem, 7vw, 7rem);
+      }
+      .publication-card:not(.publication-card--wide) .publication-findings {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        column-gap: 1rem;
+      }
+      .publication-card:not(.publication-card--wide) .publication-stat-value {
+        font-size: clamp(1.7rem, 2.4vw, 2.5rem);
+      }
+      .publication-card:not(.publication-card--wide) .publication-title {
+        font-size: clamp(1.55rem, 2.8vw, 2.35rem);
       }
       .publication-type,
       .publication-journal,
@@ -1726,6 +1744,14 @@
         flex-wrap: wrap;
         gap: 0.7rem;
         margin-top: 2rem;
+      }
+      .github-mark {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        margin-right: 0.4em;
+        vertical-align: -0.12em;
+        fill: currentColor;
       }
       .publication-findings {
         display: flex;
@@ -2288,6 +2314,15 @@
           gap: 2rem;
           padding: 1.25rem;
         }
+        .publications-grid {
+          grid-template-columns: 1fr;
+        }
+        .publication-card--wide {
+          grid-column: auto;
+        }
+        .publication-card:not(.publication-card--wide) .publication-findings {
+          grid-template-columns: 1fr;
+        }
         .f-row {
           grid-template-columns: 1fr;
         }
@@ -2360,6 +2395,17 @@
     </style>
   </head>
   <body>
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      style="position: absolute; width: 0; height: 0; overflow: hidden"
+    >
+      <symbol id="github-icon" viewBox="0 0 16 16">
+        <path
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"
+        />
+      </symbol>
+    </svg>
     <a href="#main" class="skip">Skip to content</a>
 
     <!-- atmosphere -->
@@ -2781,7 +2827,9 @@
                     href="https://github.com/ArsalanKaleem/Aestimo"
                     class="btn btn-ghost"
                     data-cursor="VISIT"
-                    ><span class="btn-t">GitHub</span></a
+                    ><span class="btn-t"
+                      ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>GitHub</span
+                    ></a
                   >
                 </div>
               </div>
@@ -2855,7 +2903,9 @@
                     href="https://github.com/ArsalanKaleem/simul-watch-together-app"
                     class="btn btn-ghost"
                     data-cursor="VISIT"
-                    ><span class="btn-t">GitHub</span></a
+                    ><span class="btn-t"
+                      ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>GitHub</span
+                    ></a
                   >
                 </div>
               </div>
@@ -2915,7 +2965,7 @@
                     class="btn btn-solid"
                     data-cursor="OPEN"
                     ><span class="btn-t"
-                      >download<svg
+                      ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>download<svg
                         width="12"
                         height="12"
                         viewBox="0 0 12 12"
@@ -2932,7 +2982,9 @@
                     href="https://github.com/ArsalanKaleem/F1-Vision"
                     class="btn btn-ghost"
                     data-cursor="VISIT"
-                    ><span class="btn-t">GitHub</span></a
+                    ><span class="btn-t"
+                      ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>GitHub</span
+                    ></a
                   >
                 </div>
               </div>
@@ -2973,26 +3025,44 @@
             </div>
             <div class="mini anim">
               <div class="mini-num">06</div>
-              <div class="mini-name">SWAI</div>
+              <div class="mini-name">sindhinorm</div>
               <p class="mini-desc">
-                Sindh Water Access Index (SWAI) is a geospatial analytics
-                platform that evaluates drinking-water accessibility for 5,159
-                villages across Sindh using satellite imagery, GIS analysis, and
-                Google Earth Engine.
+                A corpus-guided, native-validated Sindhi spelling normalizer
+                for text typed on mixed Urdu, Persian, and Arabic keyboards.
+                Restores 94.0% of altered words while changing 1.35% of clean
+                words.
               </p>
               <div class="mini-tags">
                 <span class="mini-tag">Python</span>
-                <span class="mini-tag">Google Earth Engine</span>
-                <span class="mini-tag">GIS</span>
+                <span class="mini-tag">Sindhi NLP</span>
+                <span class="mini-tag">MIT</span>
               </div>
               <div class="mini-links">
                 <a
-                  href="https://arsalankaleem.me/Sindh-Water-Access-index-SWAI-/"
+                  href="https://doi.org/10.5281/zenodo.24093294"
                   class="btn btn-ghost"
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor="OPEN"
-                  ><span class="btn-t">Explore map</span></a
+                  ><span class="btn-t">Software record</span></a
+                >
+                <a
+                  href="https://pypi.org/project/sindhinorm/"
+                  class="btn btn-ghost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="OPEN"
+                  ><span class="btn-t">Install on PyPI</span></a
+                >
+                <a
+                  href="https://github.com/ArsalanKaleem/MorphoTok-SD-UR"
+                  class="btn btn-ghost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="VISIT"
+                  ><span class="btn-t"
+                    ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>GitHub</span
+                  ></a
                 >
               </div>
             </div>
@@ -3007,6 +3077,7 @@
             <span class="tag">Research</span><span class="sec-line"></span
             ><span class="sec-title">Publications</span>
           </div>
+          <div class="publications-grid">
           <article class="publication-card">
             <div class="publication-copy">
               <div class="publication-type">Research publication · 2026</div>
@@ -3051,7 +3122,9 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor="VISIT"
-                  ><span class="btn-t">Research &amp; data</span></a
+                  ><span class="btn-t"
+                    ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>Research &amp; data</span
+                  ></a
                 >
               </div>
             </div>
@@ -3079,6 +3152,142 @@
             </div>
           </article>
           <article class="publication-card">
+            <div class="publication-copy">
+              <div class="publication-type">Research publication · 2026</div>
+              <h3 class="publication-title">
+                Estimating Village-Level Drinking-Water Accessibility in
+                Sindh, Pakistan, from Open Geospatial Data: Why Annual Rainfall
+                Inverts the Ranking
+              </h3>
+              <p class="publication-journal">
+                International Journal of Advanced Research
+              </p>
+              <p class="publication-meta">
+                Arsalan Kaleem · Sidra Soomro · Umar Jan · Sneha Haseja ·
+                November 2026
+              </p>
+              <p class="publication-summary">
+                This study estimates village-level drinking-water accessibility
+                in Sindh from open geospatial data and examines how using annual
+                rainfall can invert the resulting accessibility rankings.
+              </p>
+              <div class="publication-links">
+                <a
+                  href="https://doi.org/10.5281/zenodo.24134151"
+                  class="btn btn-solid"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="OPEN"
+                  ><span class="btn-t">Read publication</span></a
+                >
+                <a
+                  href="https://ijournalar.com/site/index.php/ijar/article/view/1512"
+                  class="btn btn-ghost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="OPEN"
+                  ><span class="btn-t">Journal article</span></a
+                >
+              </div>
+            </div>
+          </article>
+          <article class="publication-card">
+            <div class="publication-copy">
+              <div class="publication-type">Preprint · 2026</div>
+              <h3 class="publication-title">
+                Post-Hoc Vocabulary Extension for Low-Resource Languages:
+                Gains Beyond Fine-Tuning, a Pre-Tokenizer Limit, and Effects on
+                Degenerate Generation
+              </h3>
+              <p class="publication-journal">Preprints.org</p>
+              <p class="publication-meta">Arsalan Kaleem · October 2026</p>
+              <p class="publication-summary">
+                A study of vocabulary extension for Urdu, Sindhi, Pashto,
+                Amharic, Hindi, and Tamil. It compares extended models with
+                equally trained baselines and evaluates the effects of a
+                pre-tokenizer limitation on compression and generation.
+              </p>
+              <div class="publication-links">
+                <a
+                  href="https://www.preprints.org/manuscript/202610.2314"
+                  class="btn btn-solid"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="OPEN"
+                  ><span class="btn-t">Read preprint</span></a
+                >
+              </div>
+            </div>
+            <div class="publication-findings" aria-label="Study highlights">
+              <div class="publication-stat">
+                <span class="publication-stat-value">6</span>
+                <span class="publication-stat-label"
+                  >Languages evaluated</span
+                >
+              </div>
+              <div class="publication-stat">
+                <span class="publication-stat-value">45–72%</span>
+                <span class="publication-stat-label"
+                  >Shorter tokenized sequences</span
+                >
+              </div>
+              <div class="publication-stat">
+                <span class="publication-stat-value">1.75–3.64×</span>
+                <span class="publication-stat-label"
+                  >Faster generation in evaluated settings</span
+                >
+              </div>
+            </div>
+          </article>
+          <article class="publication-card">
+            <div class="publication-copy">
+              <div class="publication-type">Preprint · 2026</div>
+              <h3 class="publication-title">
+                Synthetic-Trained Guards Fail on Real LLM Agents: Step-Level
+                Evidence from Tool-Use and Coding-Agent Prompt Injection
+              </h3>
+              <p class="publication-journal">Preprints.org</p>
+              <p class="publication-meta">Arsalan Kaleem · November 2026</p>
+              <p class="publication-summary">
+                This work evaluates whether step-level guards trained on
+                synthetic data transfer to real tool-using and coding agents.
+                It finds a substantial gap between synthetic benchmark results
+                and performance on real-agent datasets, and releases
+                step-labeled evaluation resources.
+              </p>
+              <div class="publication-links">
+                <a
+                  href="https://www.preprints.org/manuscript/202611.0859"
+                  class="btn btn-solid"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="OPEN"
+                  ><span class="btn-t">Read preprint</span></a
+                >
+              </div>
+            </div>
+            <div class="publication-findings" aria-label="Study highlights">
+              <div class="publication-stat">
+                <span class="publication-stat-value">0.98</span>
+                <span class="publication-stat-label"
+                  >Trajectory F1 on the synthetic benchmark</span
+                >
+              </div>
+              <div class="publication-stat">
+                <span class="publication-stat-value">0.33 / 0.46</span>
+                <span class="publication-stat-label"
+                  >F1 on real tool-use agent datasets</span
+                >
+              </div>
+              <div class="publication-stat">
+                <span class="publication-stat-value">1 / 48</span>
+                <span class="publication-stat-label"
+                  >Coding-agent hijacks blocked by the evaluated guard</span
+                >
+              </div>
+            </div>
+          </article>
+          <article class="publication-card publication-card--wide">
             <div class="publication-copy">
               <div class="publication-type">Preprint · 2026</div>
               <h3 class="publication-title">
@@ -3109,7 +3318,9 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor="VISIT"
-                  ><span class="btn-t">Code &amp; results</span></a
+                  ><span class="btn-t"
+                    ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>Code &amp; results</span
+                  ></a
                 >
               </div>
             </div>
@@ -3132,6 +3343,7 @@
               </div>
             </div>
           </article>
+          </div>
         </div>
       </section>
 
@@ -3164,7 +3376,8 @@
                   target="_blank"
                   rel="noopener"
                   data-cursor="VISIT"
-                  >GitHub <span class="arr">↗</span></a
+                  ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>GitHub
+                  <span class="arr">↗</span></a
                 >
                 <a
                   class="social anim"
@@ -3299,7 +3512,7 @@
               href="https://github.com/ArsalanKaleem"
               target="_blank"
               rel="noopener"
-              >GitHub</a
+              ><svg class="github-mark" viewBox="0 0 16 16" aria-hidden="true"><use href="#github-icon"></use></svg>GitHub</a
             ><a
               href="www.linkedin.com/in/arsalankaleem"
               target="_blank"
